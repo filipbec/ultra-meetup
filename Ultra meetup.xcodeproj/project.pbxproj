@@ -1,0 +1,673 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3D715A940F4F46F8B1BC542C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B0A21009EC407A8DB3D7F6 /* libPods.a */; };
+		CF026117195483E800AF598A /* MapLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF026116195483E800AF598A /* MapLocation.m */; };
+		CF02611C1955739B00AF598A /* LineupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF02611B1955739B00AF598A /* LineupViewController.m */; };
+		CF026137195574E800AF598A /* BlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF026136195574E800AF598A /* BlurView.m */; };
+		CF02613A1955C0D500AF598A /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF0261391955C0D500AF598A /* TabBar.xcassets */; };
+		CF02613D1955E87800AF598A /* PeopleLookupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF02613C1955E87800AF598A /* PeopleLookupTableViewController.m */; };
+		CF0261401955ED9000AF598A /* FacebookFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = CF02613F1955ED9000AF598A /* FacebookFriend.m */; };
+		CF0261431955FA7D00AF598A /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0261421955FA7D00AF598A /* ProfileTableViewController.m */; };
+		CF490851195445A50099C6E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF490850195445A50099C6E6 /* Foundation.framework */; };
+		CF490853195445A50099C6E6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF490852195445A50099C6E6 /* CoreGraphics.framework */; };
+		CF490855195445A50099C6E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF490854195445A50099C6E6 /* UIKit.framework */; };
+		CF49085B195445A50099C6E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF490859195445A50099C6E6 /* InfoPlist.strings */; };
+		CF49085D195445A50099C6E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF49085C195445A50099C6E6 /* main.m */; };
+		CF490873195445A50099C6E6 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF490872195445A50099C6E6 /* XCTest.framework */; };
+		CF490874195445A50099C6E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF490850195445A50099C6E6 /* Foundation.framework */; };
+		CF490875195445A50099C6E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF490854195445A50099C6E6 /* UIKit.framework */; };
+		CF49087D195445A50099C6E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF49087B195445A50099C6E6 /* InfoPlist.strings */; };
+		CF49087F195445A50099C6E6 /* Ultra_meetupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CF49087E195445A50099C6E6 /* Ultra_meetupTests.m */; };
+		CF4908931954468E0099C6E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF49088B1954468E0099C6E6 /* AppDelegate.m */; };
+		CF4908941954468E0099C6E6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF4908901954468E0099C6E6 /* Images.xcassets */; };
+		CF4908951954468E0099C6E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF4908921954468E0099C6E6 /* Main.storyboard */; };
+		CF49089D195448930099C6E6 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF49089C195448930099C6E6 /* MapViewController.m */; };
+		CF49089F195448CE0099C6E6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF49089E195448CE0099C6E6 /* MapKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CF490876195445A50099C6E6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF490845195445A40099C6E6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CF49084C195445A50099C6E6;
+			remoteInfo = "Ultra meetup";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		35B0A21009EC407A8DB3D7F6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF026115195483E800AF598A /* MapLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLocation.h; sourceTree = "<group>"; };
+		CF026116195483E800AF598A /* MapLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLocation.m; sourceTree = "<group>"; };
+		CF02611A1955739B00AF598A /* LineupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineupViewController.h; sourceTree = "<group>"; };
+		CF02611B1955739B00AF598A /* LineupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineupViewController.m; sourceTree = "<group>"; };
+		CF026135195574E800AF598A /* BlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurView.h; sourceTree = "<group>"; };
+		CF026136195574E800AF598A /* BlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurView.m; sourceTree = "<group>"; };
+		CF02613819557FC900AF598A /* AppDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDefines.h; sourceTree = "<group>"; };
+		CF0261391955C0D500AF598A /* TabBar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBar.xcassets; sourceTree = "<group>"; };
+		CF02613B1955E87800AF598A /* PeopleLookupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleLookupTableViewController.h; sourceTree = "<group>"; };
+		CF02613C1955E87800AF598A /* PeopleLookupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleLookupTableViewController.m; sourceTree = "<group>"; };
+		CF02613E1955ED9000AF598A /* FacebookFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookFriend.h; sourceTree = "<group>"; };
+		CF02613F1955ED9000AF598A /* FacebookFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookFriend.m; sourceTree = "<group>"; };
+		CF0261411955FA7D00AF598A /* ProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTableViewController.h; sourceTree = "<group>"; };
+		CF0261421955FA7D00AF598A /* ProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTableViewController.m; sourceTree = "<group>"; };
+		CF49084D195445A50099C6E6 /* Ultra meetup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ultra meetup.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF490850195445A50099C6E6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CF490852195445A50099C6E6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CF490854195445A50099C6E6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CF490858195445A50099C6E6 /* Ultra meetup-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Ultra meetup-Info.plist"; sourceTree = "<group>"; };
+		CF49085A195445A50099C6E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CF49085C195445A50099C6E6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CF49085E195445A50099C6E6 /* Ultra meetup-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ultra meetup-Prefix.pch"; sourceTree = "<group>"; };
+		CF490871195445A50099C6E6 /* Ultra meetupTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ultra meetupTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF490872195445A50099C6E6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		CF49087A195445A50099C6E6 /* Ultra meetupTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Ultra meetupTests-Info.plist"; sourceTree = "<group>"; };
+		CF49087C195445A50099C6E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CF49087E195445A50099C6E6 /* Ultra_meetupTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ultra_meetupTests.m; sourceTree = "<group>"; };
+		CF49088A1954468E0099C6E6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CF49088B1954468E0099C6E6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CF4908901954468E0099C6E6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CF4908921954468E0099C6E6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		CF49089B195448930099C6E6 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		CF49089C195448930099C6E6 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		CF49089E195448CE0099C6E6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		EE28A7DBB8A44D94A27E028F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF49084A195445A50099C6E6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF490853195445A50099C6E6 /* CoreGraphics.framework in Frameworks */,
+				CF490855195445A50099C6E6 /* UIKit.framework in Frameworks */,
+				CF49089F195448CE0099C6E6 /* MapKit.framework in Frameworks */,
+				CF490851195445A50099C6E6 /* Foundation.framework in Frameworks */,
+				3D715A940F4F46F8B1BC542C /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF49086E195445A50099C6E6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF490873195445A50099C6E6 /* XCTest.framework in Frameworks */,
+				CF490875195445A50099C6E6 /* UIKit.framework in Frameworks */,
+				CF490874195445A50099C6E6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CF026134195574D400AF598A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CF026135195574E800AF598A /* BlurView.h */,
+				CF026136195574E800AF598A /* BlurView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CF490844195445A40099C6E6 = {
+			isa = PBXGroup;
+			children = (
+				CF4908911954468E0099C6E6 /* Storyboards */,
+				CF4908881954468E0099C6E6 /* Classes */,
+				CF49088F1954468E0099C6E6 /* Resoruces */,
+				CF490856195445A50099C6E6 /* Ultra meetup */,
+				CF490878195445A50099C6E6 /* Ultra meetupTests */,
+				CF49084F195445A50099C6E6 /* Frameworks */,
+				CF49084E195445A50099C6E6 /* Products */,
+				EE28A7DBB8A44D94A27E028F /* Pods.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		CF49084E195445A50099C6E6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF49084D195445A50099C6E6 /* Ultra meetup.app */,
+				CF490871195445A50099C6E6 /* Ultra meetupTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF49084F195445A50099C6E6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF49089E195448CE0099C6E6 /* MapKit.framework */,
+				CF490850195445A50099C6E6 /* Foundation.framework */,
+				CF490852195445A50099C6E6 /* CoreGraphics.framework */,
+				CF490854195445A50099C6E6 /* UIKit.framework */,
+				CF490872195445A50099C6E6 /* XCTest.framework */,
+				35B0A21009EC407A8DB3D7F6 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF490856195445A50099C6E6 /* Ultra meetup */ = {
+			isa = PBXGroup;
+			children = (
+				CF490857195445A50099C6E6 /* Supporting Files */,
+			);
+			path = "Ultra meetup";
+			sourceTree = "<group>";
+		};
+		CF490857195445A50099C6E6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF490858195445A50099C6E6 /* Ultra meetup-Info.plist */,
+				CF490859195445A50099C6E6 /* InfoPlist.strings */,
+				CF49085C195445A50099C6E6 /* main.m */,
+				CF49085E195445A50099C6E6 /* Ultra meetup-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CF490878195445A50099C6E6 /* Ultra meetupTests */ = {
+			isa = PBXGroup;
+			children = (
+				CF49087E195445A50099C6E6 /* Ultra_meetupTests.m */,
+				CF490879195445A50099C6E6 /* Supporting Files */,
+			);
+			path = "Ultra meetupTests";
+			sourceTree = "<group>";
+		};
+		CF490879195445A50099C6E6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF49087A195445A50099C6E6 /* Ultra meetupTests-Info.plist */,
+				CF49087B195445A50099C6E6 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CF4908881954468E0099C6E6 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CF026134195574D400AF598A /* Views */,
+				CF4908891954468E0099C6E6 /* Application */,
+				CF49088C1954468E0099C6E6 /* Controllers */,
+				CF49088D1954468E0099C6E6 /* Models */,
+				CF49088E1954468E0099C6E6 /* Vendor */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		CF4908891954468E0099C6E6 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				CF49088A1954468E0099C6E6 /* AppDelegate.h */,
+				CF49088B1954468E0099C6E6 /* AppDelegate.m */,
+				CF02613819557FC900AF598A /* AppDefines.h */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		CF49088C1954468E0099C6E6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CF490896195448450099C6E6 /* Chat */,
+				CF490897195448450099C6E6 /* Lineup */,
+				CF490898195448450099C6E6 /* Map */,
+				CF490899195448450099C6E6 /* Matchup */,
+				CF49089A195448450099C6E6 /* Profile */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CF49088D1954468E0099C6E6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CF026115195483E800AF598A /* MapLocation.h */,
+				CF026116195483E800AF598A /* MapLocation.m */,
+				CF02613E1955ED9000AF598A /* FacebookFriend.h */,
+				CF02613F1955ED9000AF598A /* FacebookFriend.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CF49088E1954468E0099C6E6 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		CF49088F1954468E0099C6E6 /* Resoruces */ = {
+			isa = PBXGroup;
+			children = (
+				CF4908901954468E0099C6E6 /* Images.xcassets */,
+				CF0261391955C0D500AF598A /* TabBar.xcassets */,
+			);
+			path = Resoruces;
+			sourceTree = "<group>";
+		};
+		CF4908911954468E0099C6E6 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				CF4908921954468E0099C6E6 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		CF490896195448450099C6E6 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		CF490897195448450099C6E6 /* Lineup */ = {
+			isa = PBXGroup;
+			children = (
+				CF02611A1955739B00AF598A /* LineupViewController.h */,
+				CF02611B1955739B00AF598A /* LineupViewController.m */,
+			);
+			path = Lineup;
+			sourceTree = "<group>";
+		};
+		CF490898195448450099C6E6 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				CF49089B195448930099C6E6 /* MapViewController.h */,
+				CF49089C195448930099C6E6 /* MapViewController.m */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		CF490899195448450099C6E6 /* Matchup */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Matchup;
+			sourceTree = "<group>";
+		};
+		CF49089A195448450099C6E6 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				CF02613B1955E87800AF598A /* PeopleLookupTableViewController.h */,
+				CF02613C1955E87800AF598A /* PeopleLookupTableViewController.m */,
+				CF0261411955FA7D00AF598A /* ProfileTableViewController.h */,
+				CF0261421955FA7D00AF598A /* ProfileTableViewController.m */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF49084C195445A50099C6E6 /* Ultra meetup */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF490882195445A50099C6E6 /* Build configuration list for PBXNativeTarget "Ultra meetup" */;
+			buildPhases = (
+				6E1008CE4BA94704BB3C835E /* Check Pods Manifest.lock */,
+				CF490849195445A50099C6E6 /* Sources */,
+				CF49084A195445A50099C6E6 /* Frameworks */,
+				CF49084B195445A50099C6E6 /* Resources */,
+				7C6538EBCC0D4667926C5799 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Ultra meetup";
+			productName = "Ultra meetup";
+			productReference = CF49084D195445A50099C6E6 /* Ultra meetup.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CF490870195445A50099C6E6 /* Ultra meetupTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF490885195445A50099C6E6 /* Build configuration list for PBXNativeTarget "Ultra meetupTests" */;
+			buildPhases = (
+				CF49086D195445A50099C6E6 /* Sources */,
+				CF49086E195445A50099C6E6 /* Frameworks */,
+				CF49086F195445A50099C6E6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CF490877195445A50099C6E6 /* PBXTargetDependency */,
+			);
+			name = "Ultra meetupTests";
+			productName = "Ultra meetupTests";
+			productReference = CF490871195445A50099C6E6 /* Ultra meetupTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF490845195445A40099C6E6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Infinum Ltd.";
+				TargetAttributes = {
+					CF49084C195445A50099C6E6 = {
+						SystemCapabilities = {
+							com.apple.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					CF490870195445A50099C6E6 = {
+						TestTargetID = CF49084C195445A50099C6E6;
+					};
+				};
+			};
+			buildConfigurationList = CF490848195445A40099C6E6 /* Build configuration list for PBXProject "Ultra meetup" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF490844195445A40099C6E6;
+			productRefGroup = CF49084E195445A50099C6E6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF49084C195445A50099C6E6 /* Ultra meetup */,
+				CF490870195445A50099C6E6 /* Ultra meetupTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF49084B195445A50099C6E6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF4908951954468E0099C6E6 /* Main.storyboard in Resources */,
+				CF49085B195445A50099C6E6 /* InfoPlist.strings in Resources */,
+				CF4908941954468E0099C6E6 /* Images.xcassets in Resources */,
+				CF02613A1955C0D500AF598A /* TabBar.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF49086F195445A50099C6E6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF49087D195445A50099C6E6 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6E1008CE4BA94704BB3C835E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7C6538EBCC0D4667926C5799 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF490849195445A50099C6E6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF02613D1955E87800AF598A /* PeopleLookupTableViewController.m in Sources */,
+				CF49089D195448930099C6E6 /* MapViewController.m in Sources */,
+				CF4908931954468E0099C6E6 /* AppDelegate.m in Sources */,
+				CF0261431955FA7D00AF598A /* ProfileTableViewController.m in Sources */,
+				CF49085D195445A50099C6E6 /* main.m in Sources */,
+				CF02611C1955739B00AF598A /* LineupViewController.m in Sources */,
+				CF0261401955ED9000AF598A /* FacebookFriend.m in Sources */,
+				CF026117195483E800AF598A /* MapLocation.m in Sources */,
+				CF026137195574E800AF598A /* BlurView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF49086D195445A50099C6E6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF49087F195445A50099C6E6 /* Ultra_meetupTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CF490877195445A50099C6E6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CF49084C195445A50099C6E6 /* Ultra meetup */;
+			targetProxy = CF490876195445A50099C6E6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CF490859195445A50099C6E6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF49085A195445A50099C6E6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CF49087B195445A50099C6E6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF49087C195445A50099C6E6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CF490880195445A50099C6E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CF490881195445A50099C6E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CF490883195445A50099C6E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE28A7DBB8A44D94A27E028F /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Ultra meetup/Ultra meetup-Prefix.pch";
+				INFOPLIST_FILE = "Ultra meetup/Ultra meetup-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CF490884195445A50099C6E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE28A7DBB8A44D94A27E028F /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Ultra meetup/Ultra meetup-Prefix.pch";
+				INFOPLIST_FILE = "Ultra meetup/Ultra meetup-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		CF490886195445A50099C6E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Ultra meetup.app/Ultra meetup";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Ultra meetup/Ultra meetup-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Ultra meetupTests/Ultra meetupTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		CF490887195445A50099C6E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Ultra meetup.app/Ultra meetup";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Ultra meetup/Ultra meetup-Prefix.pch";
+				INFOPLIST_FILE = "Ultra meetupTests/Ultra meetupTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF490848195445A40099C6E6 /* Build configuration list for PBXProject "Ultra meetup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF490880195445A50099C6E6 /* Debug */,
+				CF490881195445A50099C6E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF490882195445A50099C6E6 /* Build configuration list for PBXNativeTarget "Ultra meetup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF490883195445A50099C6E6 /* Debug */,
+				CF490884195445A50099C6E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF490885195445A50099C6E6 /* Build configuration list for PBXNativeTarget "Ultra meetupTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF490886195445A50099C6E6 /* Debug */,
+				CF490887195445A50099C6E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF490845195445A40099C6E6 /* Project object */;
+}
