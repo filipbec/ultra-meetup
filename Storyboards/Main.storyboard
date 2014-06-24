@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vHh-WR-wpI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -158,7 +158,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Vex-rW-GRa">
             <objects>
-                <tabBarController id="8YX-ce-x5E" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarVC" id="8YX-ce-x5E" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="JQR-rB-NYL">
                         <rect key="frame" x="0.0" y="431" width="320" height="49"/>
@@ -178,6 +178,91 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNP-y4-bzi" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="132" y="180"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="3G4-yh-zZv">
+            <objects>
+                <viewController id="vHh-WR-wpI" customClass="LoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="itG-V1-Nks"/>
+                        <viewControllerLayoutGuide type="bottom" id="IT4-hT-PJs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qev-37-S9a">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="PkU-fh-e7M">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="055-A0-2sJ">
+                                <rect key="frame" x="20" y="315" width="280" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Connect with other people from all over the world that are attending Ultra Music Festival Europe. Get in touch, meet with them, share stories and most important have fun!</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yci-92-hNg">
+                                <rect key="frame" x="15" y="468" width="290" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="290" id="4j4-4z-VWY"/>
+                                    <constraint firstAttribute="height" constant="50" id="YyB-Id-i3w"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="Login with Facebook" backgroundImage="loginWithFacebookButton">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButtonActionHandler:" destination="vHh-WR-wpI" eventType="touchUpInside" id="4a3-bd-sjP"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Don’t worry, we don’t post anything to Facebook" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOj-DP-LzE">
+                                <rect key="frame" x="14" y="526" width="293" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="ultra_logo" translatesAutoresizingMaskIntoConstraints="NO" id="3ez-C0-OIm">
+                                <rect key="frame" x="74" y="25" width="173" height="61"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ULTRA MEETUP" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="6He-dX-fon">
+                                <rect key="frame" x="15" y="191" width="290" height="115"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="290" id="xE1-bx-HNl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3ez-C0-OIm" firstAttribute="top" secondItem="itG-V1-Nks" secondAttribute="bottom" constant="5" id="ITk-HI-xXw"/>
+                            <constraint firstAttribute="centerX" secondItem="Yci-92-hNg" secondAttribute="centerX" id="MnL-bU-G9Y"/>
+                            <constraint firstAttribute="centerX" secondItem="6He-dX-fon" secondAttribute="centerX" id="OFA-67-7NH"/>
+                            <constraint firstAttribute="trailing" secondItem="PkU-fh-e7M" secondAttribute="trailing" id="ROl-VY-Xky"/>
+                            <constraint firstItem="IT4-hT-PJs" firstAttribute="top" secondItem="Yci-92-hNg" secondAttribute="bottom" constant="50" id="Tdv-U2-oe9"/>
+                            <constraint firstItem="IT4-hT-PJs" firstAttribute="top" secondItem="PkU-fh-e7M" secondAttribute="bottom" id="XFq-E0-ani"/>
+                            <constraint firstAttribute="centerY" secondItem="6He-dX-fon" secondAttribute="centerY" constant="36" id="a2l-Oi-Ccd"/>
+                            <constraint firstItem="yOj-DP-LzE" firstAttribute="top" secondItem="Yci-92-hNg" secondAttribute="bottom" constant="8" id="avI-Kp-RHl"/>
+                            <constraint firstAttribute="trailing" secondItem="055-A0-2sJ" secondAttribute="trailing" constant="20" id="bh3-5G-TGt"/>
+                            <constraint firstAttribute="centerX" secondItem="3ez-C0-OIm" secondAttribute="centerX" id="fW1-jp-RKK"/>
+                            <constraint firstItem="055-A0-2sJ" firstAttribute="leading" secondItem="Qev-37-S9a" secondAttribute="leading" constant="20" id="j7f-xl-u9q"/>
+                            <constraint firstAttribute="centerX" secondItem="yOj-DP-LzE" secondAttribute="centerX" id="lcd-cn-AGP"/>
+                            <constraint firstItem="PkU-fh-e7M" firstAttribute="leading" secondItem="Qev-37-S9a" secondAttribute="leading" id="ncE-Lb-VmN"/>
+                            <constraint firstItem="PkU-fh-e7M" firstAttribute="top" secondItem="Qev-37-S9a" secondAttribute="top" id="pQd-Qu-Q4Z"/>
+                            <constraint firstAttribute="centerY" secondItem="055-A0-2sJ" secondAttribute="centerY" constant="-66" id="tUS-Ws-eSa"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1bl-XB-Kqk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="-1168"/>
         </scene>
         <!--Navigation Controller - Lineup-->
         <scene sceneID="76v-4M-kIT">
@@ -455,10 +540,12 @@
     </scenes>
     <resources>
         <image name="background" width="320" height="480"/>
+        <image name="loginWithFacebookButton" width="290" height="50"/>
         <image name="tabBarIconChat" width="20" height="16"/>
         <image name="tabBarIconLineup" width="20" height="15"/>
         <image name="tabBarIconMap" width="18" height="16"/>
         <image name="tabBarIconProfile" width="21" height="16"/>
+        <image name="ultra_logo" width="173" height="61"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -8,7 +8,8 @@
 
 #import "PeopleLookupTableViewController.h"
 
-#define LOADING_ERROR_ALERT_TAG 12345
+#define LOADING_ERROR_ALERT_TAG     12345
+#define kInviteFacebookFriendsAlert 54343
 
 @interface PeopleLookupTableViewController ()
 
@@ -34,7 +35,7 @@
     
     [self loadFacebookFriends];
 #ifdef DEBUG
-    self.friends = [FacebookFriend fakeArray];
+//    self.friends = [FacebookFriend fakeArray];
 #endif
 }
 
@@ -131,6 +132,11 @@
             }
             
             self.friends = [self sortedFriendsArray:array];
+            if (self.friends.count == 0) {
+                [self showInviteFriendsMessage];
+            }
+            
+            [self.tableView reloadData];
 
         } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[error localizedDescription] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Try again", nil];
@@ -146,6 +152,8 @@
 {
     if (alertView.tag == LOADING_ERROR_ALERT_TAG && buttonIndex == 1) {
         [self loadFacebookFriends];
+    } else if (alertView.tag == kInviteFacebookFriendsAlert && buttonIndex == 1) {
+        [self inviteFriends];
     }
 }
 
@@ -182,6 +190,43 @@
     NSSortDescriptor *d2 = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
     
     return [array sortedArrayUsingDescriptors:@[d1, d2]];
+}
+
+
+#pragma mark - Invite
+
+- (void)showInviteFriendsMessage
+{
+#warning TODO
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ultra meetup" message:@"PORUKA!!!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Invite friends", nil];
+    alert.tag = kInviteFacebookFriendsAlert;
+    [alert show];
+}
+
+- (void)inviteFriends
+{
+    if ([[FBSession activeSession] isOpen]) {
+        [FBWebDialogs presentRequestsDialogModallyWithSession:[PFFacebookUtils session] message:@"Instaliraj aplikaciju Ultra meetup!" title:@"BOK!" parameters:nil handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+             if (error) {
+                 NSLog(@"ERROR: %@", error);
+             } else {
+                 
+                 if (result == FBWebDialogResultDialogNotCompleted) {
+                     NSLog(@"Error");
+                 } else if([[resultURL description] hasPrefix:@"fbconnect://success?request="]) {
+                     // Facebook returns FBWebDialogResultDialogCompleted even user
+                     // presses "Cancel" button, so we differentiate it on the basis of
+                     // url value, since it returns "Request" when we ACTUALLY
+                     // completes Dialog
+                     
+//                     [self requestSucceeded];
+                 } else {
+                     // User Cancelled the dialog
+//                     [self requestFailedWithError:nil];
+                 }
+             }
+         }];
+    }
 }
 
 @end

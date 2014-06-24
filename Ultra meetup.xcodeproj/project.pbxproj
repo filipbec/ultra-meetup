@@ -30,6 +30,7 @@
 		CF4908951954468E0099C6E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF4908921954468E0099C6E6 /* Main.storyboard */; };
 		CF49089D195448930099C6E6 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF49089C195448930099C6E6 /* MapViewController.m */; };
 		CF49089F195448CE0099C6E6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF49089E195448CE0099C6E6 /* MapKit.framework */; };
+		CFF1C8841959F30F008683FF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1C8831959F30F008683FF /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,8 @@
 		CF49089B195448930099C6E6 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		CF49089C195448930099C6E6 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		CF49089E195448CE0099C6E6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CFF1C8821959F30F008683FF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		CFF1C8831959F30F008683FF /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		EE28A7DBB8A44D94A27E028F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -214,6 +217,7 @@
 		CF49088C1954468E0099C6E6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CFF1C8811959F2FF008683FF /* Login */,
 				CF490896195448450099C6E6 /* Chat */,
 				CF490897195448450099C6E6 /* Lineup */,
 				CF490898195448450099C6E6 /* Map */,
@@ -299,6 +303,15 @@
 				CF0261421955FA7D00AF598A /* ProfileTableViewController.m */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		CFF1C8811959F2FF008683FF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				CFF1C8821959F30F008683FF /* LoginViewController.h */,
+				CFF1C8831959F30F008683FF /* LoginViewController.m */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -445,6 +458,7 @@
 				CF49089D195448930099C6E6 /* MapViewController.m in Sources */,
 				CF4908931954468E0099C6E6 /* AppDelegate.m in Sources */,
 				CF0261431955FA7D00AF598A /* ProfileTableViewController.m in Sources */,
+				CFF1C8841959F30F008683FF /* LoginViewController.m in Sources */,
 				CF49085D195445A50099C6E6 /* main.m in Sources */,
 				CF02611C1955739B00AF598A /* LineupViewController.m in Sources */,
 				CF0261401955ED9000AF598A /* FacebookFriend.m in Sources */,

@@ -30,8 +30,6 @@
     [super viewDidLoad];
     
     self.friends = [[NSMutableArray alloc] init];
-    
-    self.tableView.editing = YES;
 }
 
 - (void)didReceiveMemoryWarning
