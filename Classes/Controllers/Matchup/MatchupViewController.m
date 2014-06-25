@@ -9,6 +9,7 @@
 #import "MatchupViewController.h"
 #import "Group.h"
 #import <MDCSwipeToChoose/MDCSwipeToChoose.h>
+#import <SVProgressHUD.h>
 
 static const CGFloat ChoosePersonButtonHorizontalPadding = 80.f;
 static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
@@ -26,7 +27,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     if (self) {
         // This view controller maintains a list of ChoosePersonView
         // instances to display.
-        _groups = [[self defaultGroups] mutableCopy];
     }
     return self;
 }
@@ -37,16 +37,45 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 {
     [super viewDidLoad];
     
-    // Display the first ChoosePersonView in front. Users can swipe to indicate
-    // whether they like or dislike the person displayed.
-    self.frontCardView = [self popPersonViewWithFrame:[self frontCardViewFrame]];
-    [self.view addSubview:self.frontCardView];
+    [SVProgressHUD show];
     
-    // Display the second ChoosePersonView in back. This view controller uses
-    // the MDCSwipeToChooseDelegate protocol methods to update the front and
-    // back views after each user swipe.
-    self.backCardView = [self popPersonViewWithFrame:[self backCardViewFrame]];
-    [self.view insertSubview:self.backCardView belowSubview:self.frontCardView];
+    NSMutableArray *groups = [NSMutableArray array];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Group"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        for (PFObject *groupObject in objects) {
+            NSString *groupID = groupObject[@"objectId"];
+            NSString *country = groupObject[@"country"];
+            NSString *description = groupObject[@"description"];
+            NSNumber *gender = groupObject[@"gender"];
+            NSArray *members = groupObject[@"userIDs"];
+            NSArray *images = groupObject[@"images"];
+            
+            NSMutableArray *extractedImages = [NSMutableArray array];
+            for (PFFile *imageFile in images) {
+                NSData *imageData = [imageFile getData];
+                UIImage *image = [UIImage imageWithData:imageData];
+                [extractedImages addObject:image];
+            }
+            
+            Group *group = [[Group alloc] initWithGroupID:groupID country:country groupDescription:description gender:gender.integerValue members:members photos:extractedImages likedGroups:nil dislikedGroups:nil];
+            
+            [groups addObject:group];
+        }
+        self.groups = [NSMutableArray arrayWithArray:groups];
+        [SVProgressHUD dismiss];
+        
+        // Display the first ChoosePersonView in front. Users can swipe to indicate
+        // whether they like or dislike the person displayed.
+        self.frontCardView = [self popPersonViewWithFrame:[self frontCardViewFrame]];
+        [self.view addSubview:self.frontCardView];
+        
+        // Display the second ChoosePersonView in back. This view controller uses
+        // the MDCSwipeToChooseDelegate protocol methods to update the front and
+        // back views after each user swipe.
+        self.backCardView = [self popPersonViewWithFrame:[self backCardViewFrame]];
+        [self.view insertSubview:self.backCardView belowSubview:self.frontCardView];
+    }];
 }
 
 - (NSUInteger)supportedInterfaceOrientations
@@ -97,25 +126,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 {
     _frontCardView = frontCardView;
     self.currentPerson = frontCardView.group;
-}
-
-- (NSArray *)defaultGroups
-{
-    // It would be trivial to download these from a web service
-    // as needed, but for the purposes of this sample app we'll
-    // simply store them in memory.
-    
-    Group *group1 = [[Group alloc] initWithGroupID:@"1" country:@"Croatia" groupDescription:@"Ekipa" gender:1 members:@[@"Ivana", @"Matea", @"Vanja"] photos:@[[UIImage imageNamed:@"girls"]] likedGroups:@[@"afkj6VB8ddHGHswd54"] dislikedGroups:@[@"nBK66fghcHHG6FfseR"]];
-    
-    Group *group2 = [[Group alloc] initWithGroupID:@"1" country:@"Croatia" groupDescription:@"Ekipa" gender:1 members:@[@"Ana", @"Nikolina", @"Tanja", @"Dora"] photos:@[[UIImage imageNamed:@"girls"]] likedGroups:@[@"afkj6VB8ddHGHswd54"] dislikedGroups:@[@"nBK66fghcHHG6FfseR"]];
-    
-    Group *group3 = [[Group alloc] initWithGroupID:@"1" country:@"Croatia" groupDescription:@"Ekipa" gender:1 members:@[@"Katarina", @"Maja", @"Anja"] photos:@[[UIImage imageNamed:@"girls"]] likedGroups:@[@"afkj6VB8ddHGHswd54"] dislikedGroups:@[@"nBK66fghcHHG6FfseR"]];
-    
-    Group *group4 = [[Group alloc] initWithGroupID:@"1" country:@"Croatia" groupDescription:@"Ekipa" gender:1 members:@[@"Sara", @"Ida", @"Dorotea"] photos:@[[UIImage imageNamed:@"girls"]] likedGroups:@[@"afkj6VB8ddHGHswd54"] dislikedGroups:@[@"nBK66fghcHHG6FfseR"]];
-    
-    Group *group5 = [[Group alloc] initWithGroupID:@"1" country:@"Croatia" groupDescription:@"Ekipa" gender:1 members:@[@"Lana", @"Andrea", @"Valentina"] photos:@[[UIImage imageNamed:@"girls"]] likedGroups:@[@"afkj6VB8ddHGHswd54"] dislikedGroups:@[@"nBK66fghcHHG6FfseR"]];
-    
-    return @[group1, group2, group3, group4, group5];
 }
 
 - (ChooseGroupView *)popPersonViewWithFrame:(CGRect)frame
