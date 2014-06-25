@@ -18,6 +18,18 @@
 #define COCOAPODS_VERSION_MINOR_Facebook_iOS_SDK 15
 #define COCOAPODS_VERSION_PATCH_Facebook_iOS_SDK 0
 
+// JSQMessagesViewController
+#define COCOAPODS_POD_AVAILABLE_JSQMessagesViewController
+#define COCOAPODS_VERSION_MAJOR_JSQMessagesViewController 5
+#define COCOAPODS_VERSION_MINOR_JSQMessagesViewController 0
+#define COCOAPODS_VERSION_PATCH_JSQMessagesViewController 4
+
+// JSQSystemSoundPlayer
+#define COCOAPODS_POD_AVAILABLE_JSQSystemSoundPlayer
+#define COCOAPODS_VERSION_MAJOR_JSQSystemSoundPlayer 1
+#define COCOAPODS_VERSION_MINOR_JSQSystemSoundPlayer 5
+#define COCOAPODS_VERSION_PATCH_JSQSystemSoundPlayer 2
+
 // MDCSwipeToChoose
 #define COCOAPODS_POD_AVAILABLE_MDCSwipeToChoose
 #define COCOAPODS_VERSION_MAJOR_MDCSwipeToChoose 0
@@ -30,9 +42,9 @@
 #define COCOAPODS_VERSION_MINOR_Parse 2
 #define COCOAPODS_VERSION_PATCH_Parse 19
 
-// PubNub
-#define COCOAPODS_POD_AVAILABLE_PubNub
-#define COCOAPODS_VERSION_MAJOR_PubNub 3
-#define COCOAPODS_VERSION_MINOR_PubNub 6
-#define COCOAPODS_VERSION_PATCH_PubNub 1
+// SVProgressHUD
+#define COCOAPODS_POD_AVAILABLE_SVProgressHUD
+#define COCOAPODS_VERSION_MAJOR_SVProgressHUD 1
+#define COCOAPODS_VERSION_MINOR_SVProgressHUD 0
+#define COCOAPODS_VERSION_PATCH_SVProgressHUD 0
 

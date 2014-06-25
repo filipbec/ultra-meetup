@@ -19,10 +19,8 @@
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
-    [PubNub setDelegate:self];
-    
-    [Parse setApplicationId:@"HGgEWbdXPEGHbSoqHUxTzj1GqRroTsN2nJ3JcyCS" clientKey:@"1x0Fz9GdWnZaXOlsxXjzjZC1lATNMabI6pZHTVNF"];
+        
+    [Parse setApplicationId:@"n0353KQxiSUEzrTrRQT08s5zdQqe5PnxH5dbUFzk" clientKey:@"IGb2VtBJqmUrIOhp4WB9K8iBltMtYBJPkisrR3pC"];
     [PFFacebookUtils initializeFacebook];
     
     

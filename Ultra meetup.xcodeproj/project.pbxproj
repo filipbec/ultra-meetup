@@ -12,6 +12,11 @@
 		5F106CE9195AB49200160B4D /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F106CE8195AB49200160B4D /* Group.m */; };
 		5F106CEF195AB50D00160B4D /* ImageLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F106CEC195AB50D00160B4D /* ImageLabelView.m */; };
 		5F106CF0195AB50D00160B4D /* ChooseGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F106CEE195AB50D00160B4D /* ChooseGroupView.m */; };
+		5F106D18195AF69300160B4D /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F106D05195AF69300160B4D /* ChatView.m */; };
+		5F106D19195AF69300160B4D /* RoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F106D07195AF69300160B4D /* RoomView.m */; };
+		5F106D1C195AF69300160B4D /* ProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F106D0D195AF69300160B4D /* ProfileView.m */; };
+		5F106D1D195AF69300160B4D /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F106D0E195AF69300160B4D /* ProfileView.xib */; };
+		5F106D22195AF69300160B4D /* utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F106D17195AF69300160B4D /* utilities.m */; };
 		CF026117195483E800AF598A /* MapLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF026116195483E800AF598A /* MapLocation.m */; };
 		CF02611C1955739B00AF598A /* LineupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF02611B1955739B00AF598A /* LineupViewController.m */; };
 		CF026137195574E800AF598A /* BlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF026136195574E800AF598A /* BlurView.m */; };
@@ -57,6 +62,15 @@
 		5F106CEC195AB50D00160B4D /* ImageLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLabelView.m; sourceTree = "<group>"; };
 		5F106CED195AB50D00160B4D /* ChooseGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseGroupView.h; sourceTree = "<group>"; };
 		5F106CEE195AB50D00160B4D /* ChooseGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseGroupView.m; sourceTree = "<group>"; };
+		5F106D04195AF69300160B4D /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatView.h; sourceTree = "<group>"; };
+		5F106D05195AF69300160B4D /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatView.m; sourceTree = "<group>"; };
+		5F106D06195AF69300160B4D /* RoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomView.h; sourceTree = "<group>"; };
+		5F106D07195AF69300160B4D /* RoomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomView.m; sourceTree = "<group>"; };
+		5F106D0C195AF69300160B4D /* ProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileView.h; sourceTree = "<group>"; };
+		5F106D0D195AF69300160B4D /* ProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileView.m; sourceTree = "<group>"; };
+		5F106D0E195AF69300160B4D /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
+		5F106D16195AF69300160B4D /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
+		5F106D17195AF69300160B4D /* utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = utilities.m; sourceTree = "<group>"; };
 		CF026115195483E800AF598A /* MapLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLocation.h; sourceTree = "<group>"; };
 		CF026116195483E800AF598A /* MapLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLocation.m; sourceTree = "<group>"; };
 		CF02611A1955739B00AF598A /* LineupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineupViewController.h; sourceTree = "<group>"; };
@@ -141,6 +155,54 @@
 				5F106CEE195AB50D00160B4D /* ChooseGroupView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		5F106D01195AF57A00160B4D /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				5F106D02195AF69300160B4D /* ParseChat */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		5F106D02195AF69300160B4D /* ParseChat */ = {
+			isa = PBXGroup;
+			children = (
+				5F106D03195AF69300160B4D /* Chat */,
+				5F106D08195AF69300160B4D /* User */,
+				5F106D15195AF69300160B4D /* Utilities */,
+			);
+			path = ParseChat;
+			sourceTree = "<group>";
+		};
+		5F106D03195AF69300160B4D /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				5F106D04195AF69300160B4D /* ChatView.h */,
+				5F106D05195AF69300160B4D /* ChatView.m */,
+				5F106D06195AF69300160B4D /* RoomView.h */,
+				5F106D07195AF69300160B4D /* RoomView.m */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		5F106D08195AF69300160B4D /* User */ = {
+			isa = PBXGroup;
+			children = (
+				5F106D0C195AF69300160B4D /* ProfileView.h */,
+				5F106D0D195AF69300160B4D /* ProfileView.m */,
+				5F106D0E195AF69300160B4D /* ProfileView.xib */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		5F106D15195AF69300160B4D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				5F106D16195AF69300160B4D /* utilities.h */,
+				5F106D17195AF69300160B4D /* utilities.m */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		CF026134195574D400AF598A /* Views */ = {
@@ -232,7 +294,7 @@
 				CF4908891954468E0099C6E6 /* Application */,
 				CF49088C1954468E0099C6E6 /* Controllers */,
 				CF49088D1954468E0099C6E6 /* Models */,
-				CF49088E1954468E0099C6E6 /* Vendor */,
+				5F106D01195AF57A00160B4D /* Vendor */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -271,13 +333,6 @@
 				5F106CE8195AB49200160B4D /* Group.m */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		CF49088E1954468E0099C6E6 /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Vendor;
 			sourceTree = "<group>";
 		};
 		CF49088F1954468E0099C6E6 /* Resoruces */ = {
@@ -429,6 +484,7 @@
 			files = (
 				CF4908951954468E0099C6E6 /* Main.storyboard in Resources */,
 				CF49085B195445A50099C6E6 /* InfoPlist.strings in Resources */,
+				5F106D1D195AF69300160B4D /* ProfileView.xib in Resources */,
 				CF4908941954468E0099C6E6 /* Images.xcassets in Resources */,
 				CF02613A1955C0D500AF598A /* TabBar.xcassets in Resources */,
 			);
@@ -485,6 +541,8 @@
 				5F106CF0195AB50D00160B4D /* ChooseGroupView.m in Sources */,
 				5F106CEF195AB50D00160B4D /* ImageLabelView.m in Sources */,
 				CF02613D1955E87800AF598A /* PeopleLookupTableViewController.m in Sources */,
+				5F106D18195AF69300160B4D /* ChatView.m in Sources */,
+				5F106D1C195AF69300160B4D /* ProfileView.m in Sources */,
 				CF49089D195448930099C6E6 /* MapViewController.m in Sources */,
 				CF4908931954468E0099C6E6 /* AppDelegate.m in Sources */,
 				5F106CE9195AB49200160B4D /* Group.m in Sources */,
@@ -493,7 +551,9 @@
 				CF49085D195445A50099C6E6 /* main.m in Sources */,
 				CF02611C1955739B00AF598A /* LineupViewController.m in Sources */,
 				CF0261401955ED9000AF598A /* FacebookFriend.m in Sources */,
+				5F106D22195AF69300160B4D /* utilities.m in Sources */,
 				CF026117195483E800AF598A /* MapLocation.m in Sources */,
+				5F106D19195AF69300160B4D /* RoomView.m in Sources */,
 				CF026137195574E800AF598A /* BlurView.m in Sources */,
 				5F106CE6195AB45800160B4D /* MatchupViewController.m in Sources */,
 			);
