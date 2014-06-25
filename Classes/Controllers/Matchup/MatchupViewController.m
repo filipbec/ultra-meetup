@@ -33,7 +33,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 #pragma mark - UIViewController Overrides
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     // Display the first ChoosePersonView in front. Users can swipe to indicate
@@ -48,19 +49,22 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [self.view insertSubview:self.backCardView belowSubview:self.frontCardView];
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (NSUInteger)supportedInterfaceOrientations
+{
     return UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark - MDCSwipeToChooseDelegate Protocol Methods
 
 // This is called when a user didn't fully swipe left or right.
-- (void)viewDidCancelSwipe:(UIView *)view {
+- (void)viewDidCancelSwipe:(UIView *)view
+{
     //    NSLog(@"You couldn't decide on %@.", self.currentPerson.name);
 }
 
 // This is called then a user swipes the view fully left or right.
-- (void)view:(UIView *)view wasChosenWithDirection:(MDCSwipeDirection)direction {
+- (void)view:(UIView *)view wasChosenWithDirection:(MDCSwipeDirection)direction
+{
     // MDCSwipeToChooseView shows "NOPE" on swipes to the left,
     // and "LIKED" on swipes to the right.
     if (direction == MDCSwipeDirectionLeft) {
@@ -89,32 +93,33 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 #pragma mark - Internal Methods
 
-- (void)setFrontCardView:(ChooseGroupView *)frontCardView {
-    // Keep track of the person currently being chosen.
-    // Quick and dirty, just for the purposes of this sample app.
+- (void)setFrontCardView:(ChooseGroupView *)frontCardView
+{
     _frontCardView = frontCardView;
     self.currentPerson = frontCardView.group;
 }
 
-- (NSArray *)defaultGroups {
+- (NSArray *)defaultGroups
+{
     // It would be trivial to download these from a web service
     // as needed, but for the purposes of this sample app we'll
     // simply store them in memory.
     
-    Group *group1 = [[Group alloc] initWithGroupID:@"1" country:@"Croatia" groupDescription:@"Ekipa" gender:1 members:@[@"Ivana", @"Matea", @"Vanja"] facebookIDs:@[@"123", @"234", @"345"] photos:@[[UIImage imageNamed:@"girls"]] likedGroups:@[@"afkj6VB8ddHGHswd54"] dislikedGroups:@[@"nBK66fghcHHG6FfseR"]];
+    Group *group1 = [[Group alloc] initWithGroupID:@"1" country:@"Croatia" groupDescription:@"Ekipa" gender:1 members:@[@"Ivana", @"Matea", @"Vanja"] photos:@[[UIImage imageNamed:@"girls"]] likedGroups:@[@"afkj6VB8ddHGHswd54"] dislikedGroups:@[@"nBK66fghcHHG6FfseR"]];
     
-    Group *group2 = [[Group alloc] initWithGroupID:@"1" country:@"Croatia" groupDescription:@"Ekipa" gender:1 members:@[@"Ana", @"Nikolina", @"Tanja", @"Dora"] facebookIDs:@[@"123", @"234", @"345"] photos:@[[UIImage imageNamed:@"girls"]] likedGroups:@[@"afkj6VB8ddHGHswd54"] dislikedGroups:@[@"nBK66fghcHHG6FfseR"]];
+    Group *group2 = [[Group alloc] initWithGroupID:@"1" country:@"Croatia" groupDescription:@"Ekipa" gender:1 members:@[@"Ana", @"Nikolina", @"Tanja", @"Dora"] photos:@[[UIImage imageNamed:@"girls"]] likedGroups:@[@"afkj6VB8ddHGHswd54"] dislikedGroups:@[@"nBK66fghcHHG6FfseR"]];
     
-    Group *group3 = [[Group alloc] initWithGroupID:@"1" country:@"Croatia" groupDescription:@"Ekipa" gender:1 members:@[@"Katarina", @"Maja", @"Anja"] facebookIDs:@[@"123", @"234", @"345"] photos:@[[UIImage imageNamed:@"girls"]] likedGroups:@[@"afkj6VB8ddHGHswd54"] dislikedGroups:@[@"nBK66fghcHHG6FfseR"]];
+    Group *group3 = [[Group alloc] initWithGroupID:@"1" country:@"Croatia" groupDescription:@"Ekipa" gender:1 members:@[@"Katarina", @"Maja", @"Anja"] photos:@[[UIImage imageNamed:@"girls"]] likedGroups:@[@"afkj6VB8ddHGHswd54"] dislikedGroups:@[@"nBK66fghcHHG6FfseR"]];
     
-    Group *group4 = [[Group alloc] initWithGroupID:@"1" country:@"Croatia" groupDescription:@"Ekipa" gender:1 members:@[@"Sara", @"Ida", @"Dorotea"] facebookIDs:@[@"123", @"234", @"345"] photos:@[[UIImage imageNamed:@"girls"]] likedGroups:@[@"afkj6VB8ddHGHswd54"] dislikedGroups:@[@"nBK66fghcHHG6FfseR"]];
+    Group *group4 = [[Group alloc] initWithGroupID:@"1" country:@"Croatia" groupDescription:@"Ekipa" gender:1 members:@[@"Sara", @"Ida", @"Dorotea"] photos:@[[UIImage imageNamed:@"girls"]] likedGroups:@[@"afkj6VB8ddHGHswd54"] dislikedGroups:@[@"nBK66fghcHHG6FfseR"]];
     
-    Group *group5 = [[Group alloc] initWithGroupID:@"1" country:@"Croatia" groupDescription:@"Ekipa" gender:1 members:@[@"Lana", @"Andrea", @"Valentina"] facebookIDs:@[@"123", @"234", @"345"] photos:@[[UIImage imageNamed:@"girls"]] likedGroups:@[@"afkj6VB8ddHGHswd54"] dislikedGroups:@[@"nBK66fghcHHG6FfseR"]];
+    Group *group5 = [[Group alloc] initWithGroupID:@"1" country:@"Croatia" groupDescription:@"Ekipa" gender:1 members:@[@"Lana", @"Andrea", @"Valentina"] photos:@[[UIImage imageNamed:@"girls"]] likedGroups:@[@"afkj6VB8ddHGHswd54"] dislikedGroups:@[@"nBK66fghcHHG6FfseR"]];
     
     return @[group1, group2, group3, group4, group5];
 }
 
-- (ChooseGroupView *)popPersonViewWithFrame:(CGRect)frame {
+- (ChooseGroupView *)popPersonViewWithFrame:(CGRect)frame
+{
     if ([self.groups count] == 0) {
         return nil;
     }

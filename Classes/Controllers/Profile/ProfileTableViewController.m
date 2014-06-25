@@ -7,10 +7,32 @@
 //
 
 #import "ProfileTableViewController.h"
+#import "SimpleInputTableViewCell.h"
+#import "PhotosTableViewCell.h"
+#import "CountryList.h"
+
+typedef NS_ENUM(NSInteger, Gender) {
+    GenderNone = -1,
+    GenderMale = 0,
+    GenderFemale = 1,
+    GenderMixed = 2
+};
 
 @interface ProfileTableViewController ()
 
-@property (nonatomic, retain) NSMutableArray *friends;
+@property (nonatomic, retain) NSMutableOrderedSet *friends;
+@property (nonatomic, retain) CountryList *countryList;
+@property (nonatomic, retain) NSArray *genderList;
+
+@property (nonatomic, retain) UIPickerView *countryPicker;
+@property (nonatomic, retain) UIPickerView *genderPicker;
+
+@property (nonatomic, assign) Gender selectedGender;
+@property (nonatomic, retain) NSString *selectedCountry;
+
+@property (nonatomic, assign) NSInteger selectedPhotoButtonTag;
+
+@property (nonatomic, retain) NSMutableArray *photos;
 
 @end
 
@@ -29,7 +51,17 @@
 {
     [super viewDidLoad];
     
-    self.friends = [[NSMutableArray alloc] init];
+    self.tableView.editing = YES;
+    self.tableView.allowsSelectionDuringEditing = YES;
+    
+    self.friends = [[NSMutableOrderedSet alloc] init];
+    self.photos = [[NSMutableArray alloc] init];
+    
+    self.countryList = [[CountryList alloc] init];
+    self.genderList = [[NSArray alloc] initWithObjects:@"Male", @"Female", @"Mixed", nil];
+    
+    self.selectedCountry = nil;
+    self.selectedGender = GenderNone;
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,92 +72,306 @@
 
 #pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//#warning Potentially incomplete method implementation.
-//    // Return the number of sections.
-//    return 0;
-//}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 3;
+}
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//#warning Incomplete method implementation.
-//    // Return the number of rows in the section.
-//    return 0;
-//}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+            return self.friends.count + 1;
+            
+        case 1:
+            return 2;
+            
+        case 2:
+            return 1;
+    }
+    
+    return 0;
+}
 
-/*
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 2) {
+        return 320;
+    }
+    return 50;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    switch (indexPath.section) {
+        case 0:
+            return [self tableView:tableView cellForFirstSectionWithIndexPath:indexPath];
+            
+        case 1:
+            return [self tableView:tableView cellForSecondSectionWithIndexPath:indexPath];
+            
+        case 2:
+            return [self tableView:tableView cellForThirdSectionWithIndexPath:indexPath];
+    }
+    return nil;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForFirstSectionWithIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row < self.friends.count) {
+        PFUser *friend = [self.friends objectAtIndex:indexPath.row];
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FriendCell" forIndexPath:indexPath];
+        cell.textLabel.text = [friend objectForKey:@"name"];
+        return cell;
+    }
     
-    // Configure the cell...
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddMemberCell" forIndexPath:indexPath];
+    return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForSecondSectionWithIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.row) {
+        case 0: {
+            SimpleInputTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddMemberCell" forIndexPath:indexPath];
+            
+            cell.textField.placeholder = @"Country";
+            cell.textField.userInteractionEnabled = YES;
+            cell.textField.enabled = YES;
+            
+            cell.textField.inputView = self.countryPicker;
+            cell.textField.text = self.selectedCountry;
+            
+            return cell;
+        }
+            
+        case 1: {
+            SimpleInputTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddMemberCell" forIndexPath:indexPath];
+            
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.textField.placeholder = @"Gender";
+            cell.textField.userInteractionEnabled = YES;
+            cell.textField.enabled = YES;
+            
+            cell.textField.inputView = self.genderPicker;
+            if (self.selectedGender != GenderNone) {
+                cell.textField.text = [self.genderList objectAtIndex:self.selectedGender];
+            }
+            
+            return cell;
+        }
+            
+        case 2:
+            break;
+            
+        default:
+            break;
+    }
+    
+    return nil;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForThirdSectionWithIndexPath:(NSIndexPath *)indexPath
+{
+    PhotosTableViewCell *cell = (PhotosTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"PhotosCell" forIndexPath:indexPath];
+    
+    [cell.photo1 addTarget:self action:@selector(photoButtonActionHandler:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.photo2 addTarget:self action:@selector(photoButtonActionHandler:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.photo3 addTarget:self action:@selector(photoButtonActionHandler:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.photo4 addTarget:self action:@selector(photoButtonActionHandler:) forControlEvents:UIControlEventTouchUpInside];
+    
+    NSInteger i = 0;
+    NSArray *photoButtons = @[cell.photo1, cell.photo2, cell.photo3, cell.photo4];
+    
+    while (i < self.photos.count) {
+        UIButton *b = [photoButtons objectAtIndex:i];
+        [b setImage:[self.photos objectAtIndex:i] forState:UIControlStateNormal];
+        ++i;
+    }
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    if (indexPath.section == 0 && indexPath.row < self.friends.count) {
+        return YES;
+    }
+    
+    return NO;
 }
-*/
 
-/*
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    [self.friends removeObjectAtIndex:indexPath.row];
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([[[segue destinationViewController] topViewController] isKindOfClass:[PeopleLookupTableViewController class]]) {
+        PeopleLookupTableViewController *vc = (PeopleLookupTableViewController *)[[segue destinationViewController] topViewController];
+        vc.delegate = self;
+    }
 }
-*/
 
 #pragma mark - People lookup delegate
 
-- (void)peopleLookupController:(PeopleLookupTableViewController *)controller didSelectFacebookFriend:(FacebookFriend *)fbFriend
+- (void)peopleLookupController:(PeopleLookupTableViewController *)controller didSelectFriend:(PFUser *)user
 {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.friends.count inSection:0];
-    [self.friends addObject:fbFriend];
+    [self.friends addObject:user];
     
-    [self.tableView beginUpdates];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView endUpdates];
 }
 
+- (UIPickerView *)countryPicker
+{
+    if (!_countryPicker) {
+        _countryPicker = [[UIPickerView alloc] init];
+        _countryPicker.delegate = self;
+        _countryPicker.delegate = self;
+    }
+    
+    return _countryPicker;
+}
 
+- (UIPickerView *)genderPicker
+{
+    if (!_genderPicker) {
+        _genderPicker = [[UIPickerView alloc] init];
+        _genderPicker.delegate = self;
+        _genderPicker.dataSource = self;
+    }
+    return _genderPicker;
+}
+
+#pragma mark -  Picker view data source
+// returns the number of 'columns' to display.
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    if (pickerView == self.countryPicker) {
+        return 1;
+        
+    } else if (pickerView == self.genderPicker) {
+        return 1;
+    }
+    
+    return 0;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    if (pickerView == self.countryPicker) {
+        return [self.countryList.objects count];
+        
+    } else if (pickerView == self.genderPicker) {
+        return 3;
+    }
+    
+    return 0;
+}
+
+#pragma mark - Picker view delegate
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    if (pickerView == self.countryPicker) {
+        return [self.countryList.objects objectAtIndex:row];
+        
+    } else if (pickerView == self.genderPicker) {
+        return [self.genderList objectAtIndex:row];
+    }
+    
+    return nil;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if (pickerView == self.countryPicker) {
+        self.selectedCountry = [self.countryList.objects objectAtIndex:row];
+        
+        SimpleInputTableViewCell *cell = (SimpleInputTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+        cell.textField.text = self.selectedCountry;
+        
+    } else if (pickerView == self.genderPicker) {
+        self.selectedGender = row;
+        
+        SimpleInputTableViewCell *cell = (SimpleInputTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+        cell.textField.text = [self.genderList objectAtIndex:self.selectedGender];
+    }
+}
+
+#pragma mark -
+#pragma mark - Photos
+#pragma mark -
+
+- (void)photoButtonActionHandler:(id)sender
+{
+    UIButton *button = sender;
+    self.selectedPhotoButtonTag = button.tag;
+    
+    [self showActionSheet];
+}
+
+- (void)showActionSheet
+{
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Select from camera roll", @"Take a photo", nil];
+        [actionSheet showFromTabBar:self.tabBarController.tabBar];
+        
+    } else {
+        [self createAndShowImagePickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    }
+}
+
+- (void)createAndShowImagePickerWithSourceType:(UIImagePickerControllerSourceType)sourceType
+{
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.delegate = self;
+    imagePicker.sourceType = sourceType;
+    imagePicker.allowsEditing = YES;
+    
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
+
+#pragma mark - ActionSheet delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [self createAndShowImagePickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    } else if (buttonIndex == 1) {
+        [self createAndShowImagePickerWithSourceType:UIImagePickerControllerSourceTypeCamera];
+    }
+}
+
+#pragma mark - Image picker controller delegate
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        UIImage *editedImage = (UIImage*)[info objectForKey:UIImagePickerControllerEditedImage];
+        
+        if (self.photos.count < 4 && self.photos.count < self.selectedPhotoButtonTag) {
+            [self.photos addObject:editedImage];
+        } else {
+            [self.photos replaceObjectAtIndex:self.selectedPhotoButtonTag-1 withObject:editedImage];
+        }
+
+        [self.tableView reloadData];
+    }];
+    
+}
 
 @end

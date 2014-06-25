@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FacebookFriend.h"
 
 @class PeopleLookupTableViewController;
 
 @protocol PeopleLookupDelegate <NSObject>
 
-- (void)peopleLookupController:(PeopleLookupTableViewController *)controller didSelectFacebookFriend:(FacebookFriend *)fbFriend;
+- (void)peopleLookupController:(PeopleLookupTableViewController *)controller didSelectFriend:(PFUser *)user;
 
 @end
 

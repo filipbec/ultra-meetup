@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "PeopleLookupTableViewController.h"
 
-@interface ProfileTableViewController : UITableViewController <PeopleLookupDelegate>
+@interface ProfileTableViewController : UITableViewController <PeopleLookupDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end

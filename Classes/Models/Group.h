@@ -15,7 +15,6 @@
 @property (nonatomic, copy) NSString *groupDescription;
 @property (nonatomic, assign) NSInteger gender;
 @property (nonatomic, strong) NSArray *members;
-@property (nonatomic, strong) NSArray *facebookIDs;
 @property (nonatomic, strong) NSArray *photos;
 @property (nonatomic, strong) NSArray *likedGroups;
 @property (nonatomic, strong) NSArray *dislikedGroups;
@@ -25,7 +24,6 @@
                groupDescription: (NSString *)groupDescription
                          gender: (NSInteger)gender
                         members: (NSArray *)members
-                    facebookIDs: (NSArray *)facebookIDs
                          photos: (NSArray *)photos
                     likedGroups: (NSArray *)likedGroups
                  dislikedGroups: (NSArray *)dislikedGroups;

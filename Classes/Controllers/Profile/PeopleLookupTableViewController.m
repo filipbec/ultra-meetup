@@ -75,7 +75,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PeopleLookupCell"];
     }
     
-    FacebookFriend *friend = nil;
+    PFUser *friend = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         friend = [self.searchResults objectAtIndex:indexPath.row];
     } else {
@@ -84,7 +84,7 @@
     
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
     cell.textLabel.textColor = [UIColor colorWithRed:30./255 green:30./255 blue:30./255 alpha:1.0];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", friend.firstName, friend.lastName];
+    cell.textLabel.text = [friend objectForKey:@"name"];
     
     return cell;
 }
@@ -100,14 +100,14 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    FacebookFriend *friend = nil;
+    PFUser *friend = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         friend = [self.searchResults objectAtIndex:indexPath.row];
     } else {
         friend = [self.friends objectAtIndex:indexPath.row];
     }
     
-    [self.delegate peopleLookupController:self didSelectFacebookFriend:friend];
+    [self.delegate peopleLookupController:self didSelectFriend:friend];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -115,27 +115,16 @@
 
 - (void)loadFacebookFriends
 {
-    FBRequest *request = [FBRequest requestForMyFriends];
+    PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+    [query orderByAscending:@"name"];
     
-    // SHOW LOADING
-    [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-        // HIDE LOADING
-        
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            // result will contain an array with your user's friends in the "data" key
-            NSArray *friendResults = [result objectForKey:@"data"];
-            NSMutableArray *array = [[NSMutableArray alloc] init];
-
-            for (NSDictionary *dict in friendResults) {
-                FacebookFriend *friend = [[FacebookFriend alloc] initWithDictionary:dict];
-                [array addObject:friend];
-            }
-            
-            self.friends = [self sortedFriendsArray:array];
+            self.friends = objects;
             if (self.friends.count == 0) {
                 [self showInviteFriendsMessage];
             }
-            
+
             [self.tableView reloadData];
 
         } else {
@@ -206,24 +195,10 @@
 - (void)inviteFriends
 {
     if ([[FBSession activeSession] isOpen]) {
+#warning MESSAGE
         [FBWebDialogs presentRequestsDialogModallyWithSession:[PFFacebookUtils session] message:@"Instaliraj aplikaciju Ultra meetup!" title:@"BOK!" parameters:nil handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
              if (error) {
                  NSLog(@"ERROR: %@", error);
-             } else {
-                 
-                 if (result == FBWebDialogResultDialogNotCompleted) {
-                     NSLog(@"Error");
-                 } else if([[resultURL description] hasPrefix:@"fbconnect://success?request="]) {
-                     // Facebook returns FBWebDialogResultDialogCompleted even user
-                     // presses "Cancel" button, so we differentiate it on the basis of
-                     // url value, since it returns "Request" when we ACTUALLY
-                     // completes Dialog
-                     
-//                     [self requestSucceeded];
-                 } else {
-                     // User Cancelled the dialog
-//                     [self requestFailedWithError:nil];
-                 }
              }
          }];
     }

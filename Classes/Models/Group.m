@@ -10,29 +10,25 @@
 
 @implementation Group
 
-#pragma mark - Object Lifecycle
-
 - (instancetype)initWithGroupID:(NSString *)groupID
-                        country: (NSString *)country
-               groupDescription: (NSString *)groupDescription
-                         gender: (NSInteger)gender
-                        members: (NSArray *)members
-                    facebookIDs: (NSArray *)facebookIDs
-                         photos: (NSArray *)photos
+                        country:(NSString *)country
+               groupDescription:(NSString *)groupDescription
+                         gender:(NSInteger)gender
+                        members:(NSArray *)members
+                         photos:(NSArray *)photos
                     likedGroups:(NSArray *)likedGroups
                  dislikedGroups:(NSArray *)dislikedGroups
 {
     self = [super init];
     if (self) {
-        _groupID = groupID;
-        _country = country;
-        _groupDescription = groupDescription;
-        _gender =  gender;
-        _members = members;
-        _facebookIDs = facebookIDs;
-        _photos = photos;
-        _likedGroups = likedGroups;
-        _dislikedGroups = dislikedGroups;
+        self.groupID = groupID;
+        self.country = country;
+        self.groupDescription = groupDescription;
+        self.gender =  gender;
+        self.members = members;
+        self.photos = photos;
+        self.likedGroups = likedGroups;
+        self.dislikedGroups = dislikedGroups;
     }
     return self;
 }

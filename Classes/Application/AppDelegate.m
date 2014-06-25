@@ -16,6 +16,7 @@
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: PURPLE_COLOR} forState:UIControlStateSelected];
     [[UITabBar appearance] setTintColor:PURPLE_COLOR];
     
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -24,6 +25,11 @@
     [PFFacebookUtils initializeFacebook];
     
     
+    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+        // user is logged in
+        UITabBarController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"TabBarVC"];
+        [self.window setRootViewController:vc];
+    }
     
     // FONTS
 //    NSArray *fontFamilies = [UIFont familyNames];

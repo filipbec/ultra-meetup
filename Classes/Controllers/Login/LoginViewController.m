@@ -11,6 +11,8 @@
 
 @interface LoginViewController ()
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 @end
 
 @implementation LoginViewController
@@ -43,10 +45,9 @@
     NSArray *permissionsArray = @[@"user_about_me", @"user_friends"];
     
     // Login PFUser using Facebook
-#warning TODO
+    [self.activityIndicator startAnimating];
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
-#warning TODO
-//        [_activityIndicator stopAnimating];
+        [self.activityIndicator stopAnimating];
         
         if (!user) {
             if (!error) {
@@ -56,7 +57,22 @@
             }
         } else if (user.isNew) {
             NSLog(@"User with facebook signed up and logged in!");
-            [self openTabBarViewController];
+            
+            FBRequest *request = [FBRequest requestForMe];
+            // Send request to Facebook
+            [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                if (!error) {
+                    // result is a dictionary with the user's Facebook data
+                    NSDictionary *userData = (NSDictionary *)result;
+                    NSString *name = userData[@"name"];
+                    
+                    PFUser *user = [PFUser currentUser];
+                    [user setObject:name forKey:@"name"];
+                    [user saveEventually];
+                    
+                    [self openTabBarViewController];
+                }
+            }];
             
         } else {
             NSLog(@"User with facebook logged in!");
@@ -67,11 +83,6 @@
 
 - (void)openTabBarViewController
 {
-    // Request publish_actions
-    [FBSession.activeSession requestNewReadPermissions:@[@"user_friends"] completionHandler:^(FBSession *session, NSError *error) {
-        NSLog(@"TEST");
-    }];
-    
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     UITabBarController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"TabBarVC"];
