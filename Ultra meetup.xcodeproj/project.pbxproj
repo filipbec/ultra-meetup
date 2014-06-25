@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3D715A940F4F46F8B1BC542C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B0A21009EC407A8DB3D7F6 /* libPods.a */; };
+		5F106CE6195AB45800160B4D /* MatchupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F106CE5195AB45800160B4D /* MatchupViewController.m */; };
+		5F106CE9195AB49200160B4D /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F106CE8195AB49200160B4D /* Group.m */; };
+		5F106CEF195AB50D00160B4D /* ImageLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F106CEC195AB50D00160B4D /* ImageLabelView.m */; };
+		5F106CF0195AB50D00160B4D /* ChooseGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F106CEE195AB50D00160B4D /* ChooseGroupView.m */; };
 		CF026117195483E800AF598A /* MapLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF026116195483E800AF598A /* MapLocation.m */; };
 		CF02611C1955739B00AF598A /* LineupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF02611B1955739B00AF598A /* LineupViewController.m */; };
 		CF026137195574E800AF598A /* BlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF026136195574E800AF598A /* BlurView.m */; };
@@ -45,6 +49,14 @@
 
 /* Begin PBXFileReference section */
 		35B0A21009EC407A8DB3D7F6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F106CE4195AB45800160B4D /* MatchupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchupViewController.h; sourceTree = "<group>"; };
+		5F106CE5195AB45800160B4D /* MatchupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchupViewController.m; sourceTree = "<group>"; };
+		5F106CE7195AB49200160B4D /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		5F106CE8195AB49200160B4D /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		5F106CEB195AB50D00160B4D /* ImageLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLabelView.h; sourceTree = "<group>"; };
+		5F106CEC195AB50D00160B4D /* ImageLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLabelView.m; sourceTree = "<group>"; };
+		5F106CED195AB50D00160B4D /* ChooseGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseGroupView.h; sourceTree = "<group>"; };
+		5F106CEE195AB50D00160B4D /* ChooseGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseGroupView.m; sourceTree = "<group>"; };
 		CF026115195483E800AF598A /* MapLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLocation.h; sourceTree = "<group>"; };
 		CF026116195483E800AF598A /* MapLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLocation.m; sourceTree = "<group>"; };
 		CF02611A1955739B00AF598A /* LineupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineupViewController.h; sourceTree = "<group>"; };
@@ -110,6 +122,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F106CE3195AB43D00160B4D /* Matchup */ = {
+			isa = PBXGroup;
+			children = (
+				5F106CEA195AB4F900160B4D /* Views */,
+				5F106CE4195AB45800160B4D /* MatchupViewController.h */,
+				5F106CE5195AB45800160B4D /* MatchupViewController.m */,
+			);
+			path = Matchup;
+			sourceTree = "<group>";
+		};
+		5F106CEA195AB4F900160B4D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5F106CEB195AB50D00160B4D /* ImageLabelView.h */,
+				5F106CEC195AB50D00160B4D /* ImageLabelView.m */,
+				5F106CED195AB50D00160B4D /* ChooseGroupView.h */,
+				5F106CEE195AB50D00160B4D /* ChooseGroupView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		CF026134195574D400AF598A /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,7 +254,7 @@
 				CF490896195448450099C6E6 /* Chat */,
 				CF490897195448450099C6E6 /* Lineup */,
 				CF490898195448450099C6E6 /* Map */,
-				CF490899195448450099C6E6 /* Matchup */,
+				5F106CE3195AB43D00160B4D /* Matchup */,
 				CF49089A195448450099C6E6 /* Profile */,
 			);
 			path = Controllers;
@@ -234,6 +267,8 @@
 				CF026116195483E800AF598A /* MapLocation.m */,
 				CF02613E1955ED9000AF598A /* FacebookFriend.h */,
 				CF02613F1955ED9000AF598A /* FacebookFriend.m */,
+				5F106CE7195AB49200160B4D /* Group.h */,
+				5F106CE8195AB49200160B4D /* Group.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -285,13 +320,6 @@
 				CF49089C195448930099C6E6 /* MapViewController.m */,
 			);
 			path = Map;
-			sourceTree = "<group>";
-		};
-		CF490899195448450099C6E6 /* Matchup */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Matchup;
 			sourceTree = "<group>";
 		};
 		CF49089A195448450099C6E6 /* Profile */ = {
@@ -454,9 +482,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F106CF0195AB50D00160B4D /* ChooseGroupView.m in Sources */,
+				5F106CEF195AB50D00160B4D /* ImageLabelView.m in Sources */,
 				CF02613D1955E87800AF598A /* PeopleLookupTableViewController.m in Sources */,
 				CF49089D195448930099C6E6 /* MapViewController.m in Sources */,
 				CF4908931954468E0099C6E6 /* AppDelegate.m in Sources */,
+				5F106CE9195AB49200160B4D /* Group.m in Sources */,
 				CF0261431955FA7D00AF598A /* ProfileTableViewController.m in Sources */,
 				CFF1C8841959F30F008683FF /* LoginViewController.m in Sources */,
 				CF49085D195445A50099C6E6 /* main.m in Sources */,
@@ -464,6 +495,7 @@
 				CF0261401955ED9000AF598A /* FacebookFriend.m in Sources */,
 				CF026117195483E800AF598A /* MapLocation.m in Sources */,
 				CF026137195574E800AF598A /* BlurView.m in Sources */,
+				5F106CE6195AB45800160B4D /* MatchupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
