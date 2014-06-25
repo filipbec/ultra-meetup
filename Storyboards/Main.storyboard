@@ -498,7 +498,13 @@
                             <outlet property="delegate" destination="7az-zA-FzP" id="gA0-87-Ahg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="GROUP PROFILE" id="jQH-wM-egl"/>
+                    <navigationItem key="navigationItem" title="GROUP PROFILE" id="jQH-wM-egl">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="OPz-o1-5ae">
+                            <connections>
+                                <action selector="doneBarButtonItemTapped:" destination="7az-zA-FzP" id="L4N-C8-y5l"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Er4-26-Eoq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

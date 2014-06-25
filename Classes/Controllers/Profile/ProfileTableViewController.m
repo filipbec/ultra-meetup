@@ -10,6 +10,7 @@
 #import "SimpleInputTableViewCell.h"
 #import "PhotosTableViewCell.h"
 #import "CountryList.h"
+#import <SVProgressHUD.h>
 
 typedef NS_ENUM(NSInteger, Gender) {
     GenderNone = -1,
@@ -34,6 +35,7 @@ typedef NS_ENUM(NSInteger, Gender) {
 
 @property (nonatomic, retain) NSMutableArray *photos;
 
+- (IBAction)doneBarButtonItemTapped:(UIBarButtonItem *)sender;
 @end
 
 @implementation ProfileTableViewController
@@ -372,6 +374,59 @@ typedef NS_ENUM(NSInteger, Gender) {
         [self.tableView reloadData];
     }];
     
+}
+
+- (IBAction)doneBarButtonItemTapped:(UIBarButtonItem *)sender
+{
+    [SVProgressHUD show];
+    
+    PFObject *group = [PFObject objectWithClassName:@"Group"];
+    
+    NSMutableArray *userIDs = [NSMutableArray array];
+    [userIDs addObject:[PFUser currentUser].objectId];
+    
+    for (PFUser *user in self.friends) {
+        [userIDs addObject:user.objectId];
+    }
+    
+    [group addUniqueObjectsFromArray:userIDs forKey:@"userIDs"];
+    group[@"country"] = self.selectedCountry;
+    group[@"gender"] = [NSNumber numberWithInt:self.selectedGender];
+
+    NSMutableArray *imageFiles = [NSMutableArray array];
+    
+    dispatch_queue_t dispatchQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_group_t dispatchGroup = dispatch_group_create();
+    
+    for (UIImage *image in self.photos) {
+        dispatch_group_enter(dispatchGroup);
+        
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+        PFFile *imageFile = [PFFile fileWithName:@"groupImage.png" data:imageData];
+        [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                [imageFiles addObject:imageFile];
+            } else {
+                NSLog(@"[ERROR] Failed to save image with error: %@", error.localizedDescription);
+            }
+            dispatch_group_leave(dispatchGroup);
+        }];
+    }
+    
+    dispatch_group_notify(dispatchGroup, dispatchQueue, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            group[@"images"] = imageFiles;
+            
+            [group saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    [SVProgressHUD showSuccessWithStatus:@"Group created successfully!"];
+                } else {
+                    [SVProgressHUD showErrorWithStatus:@"Failed to create group!"];
+                    NSLog(@"[ERROR] Failed to create group with error: %@", error.localizedDescription);
+                }
+            }];
+        });
+    });
 }
 
 @end
