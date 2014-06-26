@@ -11,7 +11,9 @@
 
 @interface MapLocation : NSObject <MKAnnotation>
 
-/// Default coordinate - Spaladium Arena: 3.5242968, 16.4342238
+@property (nonatomic,copy) NSString *title;
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
+
+- (id)initWithTitle:(NSString *)title andCoordinates:(CLLocationCoordinate2D)coordinates;
 
 @end

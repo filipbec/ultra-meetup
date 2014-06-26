@@ -10,11 +10,12 @@
 
 @implementation MapLocation
 
-- (id)init
+- (id)initWithTitle:(NSString *)title andCoordinates:(CLLocationCoordinate2D)coordinates
 {
     self = [super init];
     if (self) {
-        self.coordinate = CLLocationCoordinate2DMake(43.5244169,16.4342308);
+        self.title = title;
+        self.coordinate = coordinates;
     }
     return self;
 }
