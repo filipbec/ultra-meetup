@@ -162,8 +162,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 - (CGRect)frontCardViewFrame {
     CGFloat horizontalPadding = 20.f;
-    CGFloat topPadding = 100.f;
-    CGFloat bottomPadding = 200.f;
+    CGFloat topPadding = 90.f;
+    CGFloat bottomPadding = 130.f;
     return CGRectMake(horizontalPadding,
                       topPadding,
                       CGRectGetWidth(self.view.frame) - (horizontalPadding * 2),
