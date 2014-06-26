@@ -53,7 +53,9 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
             NSMutableArray *extractedNames = [NSMutableArray array];
             for (PFUser *user in members) {
                 [user fetchIfNeeded];
-                [extractedNames addObject:user[@"name"]];
+                NSString *fullName = user[@"name"];
+                NSArray *fullNameComponents = [fullName componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                [extractedNames addObject:fullNameComponents[0]];
             }
             
             NSArray *images = groupObject[@"images"];
