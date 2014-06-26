@@ -117,6 +117,7 @@
 {
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
     [query orderByAscending:@"name"];
+    [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {

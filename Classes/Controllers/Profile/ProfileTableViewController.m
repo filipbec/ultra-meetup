@@ -382,7 +382,9 @@ typedef NS_ENUM(NSInteger, Gender) {
     
     PFObject *group = [PFObject objectWithClassName:@"Group"];
     
-    group[@"users"] = self.friends.array;
+    NSMutableArray *groupMembers = [NSMutableArray arrayWithArray:self.friends.array];
+    [groupMembers addObject:[PFUser currentUser]];
+    group[@"users"] = groupMembers;
     
     group[@"country"] = self.selectedCountry;
     group[@"gender"] = [NSNumber numberWithInt:self.selectedGender];
