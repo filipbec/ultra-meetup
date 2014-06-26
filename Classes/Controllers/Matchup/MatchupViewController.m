@@ -48,9 +48,15 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
             NSString *country = groupObject[@"country"];
             NSString *description = groupObject[@"description"];
             NSNumber *gender = groupObject[@"gender"];
-            NSArray *members = groupObject[@"userIDs"];
-            NSArray *images = groupObject[@"images"];
             
+            NSArray *members = groupObject[@"users"];
+            NSMutableArray *extractedNames = [NSMutableArray array];
+            for (PFUser *user in members) {
+                [user fetchIfNeeded];
+                [extractedNames addObject:user[@"name"]];
+            }
+            
+            NSArray *images = groupObject[@"images"];
             NSMutableArray *extractedImages = [NSMutableArray array];
             for (PFFile *imageFile in images) {
                 NSData *imageData = [imageFile getData];
@@ -58,7 +64,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                 [extractedImages addObject:image];
             }
             
-            Group *group = [[Group alloc] initWithGroupID:groupID country:country groupDescription:description gender:gender.integerValue members:members photos:extractedImages likedGroups:nil dislikedGroups:nil];
+            Group *group = [[Group alloc] initWithGroupID:groupID country:country groupDescription:description gender:gender.integerValue members:extractedNames photos:extractedImages likedGroups:nil dislikedGroups:nil];
             
             [groups addObject:group];
         }
