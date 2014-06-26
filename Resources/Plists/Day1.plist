@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Main</key>
+	<array>
+		<dict>
+			<key>Artist</key>
+			<string>Hardwell</string>
+			<key>Time</key>
+			<string>18:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Above &amp; Beyond</string>
+			<key>Time</key>
+			<string>19:15</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Nicky Romero</string>
+			<key>Time</key>
+			<string>20:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Martin Garrix</string>
+			<key>Time</key>
+			<string>21:30</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Fedde Le Grand</string>
+			<key>Time</key>
+			<string>22:15</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Example</string>
+			<key>Time</key>
+			<string>23:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Showtek</string>
+			<key>Time</key>
+			<string>00:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>The Chainsmokers</string>
+			<key>Time</key>
+			<string>01:15</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Deorro</string>
+			<key>Time</key>
+			<string>02:15</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Hardwell</string>
+			<key>Time</key>
+			<string>03:00</string>
+		</dict>
+	</array>
+	<key>Arena</key>
+	<array>
+		<dict>
+			<key>Artist</key>
+			<string>Disclosure</string>
+			<key>Time</key>
+			<string>18:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Pretty Lights</string>
+			<key>Time</key>
+			<string>19:15</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Gramatik</string>
+			<key>Time</key>
+			<string>20:15</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Hot Since 82</string>
+			<key>Time</key>
+			<string>21:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Paul Kalkbrenner</string>
+			<key>Time</key>
+			<string>22:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Barks</string>
+			<key>Time</key>
+			<string>23:30</string>
+		</dict>
+	</array>
+	<key>Radio</key>
+	<array>
+		<dict>
+			<key>Artist</key>
+			<string>Steve Mulder</string>
+			<key>Time</key>
+			<string>13:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Riotgear</string>
+			<key>Time</key>
+			<string>14:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Elio Riso</string>
+			<key>Time</key>
+			<string>15:30</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>PHNTM</string>
+			<key>Time</key>
+			<string>16:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Pero FullHouse</string>
+			<key>Time</key>
+			<string>17:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Silvio Hrabar</string>
+			<key>Time</key>
+			<string>18:15</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Edy C</string>
+			<key>Time</key>
+			<string>20:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>DJ Contest Winners</string>
+			<key>Time</key>
+			<string>21:00</string>
+		</dict>
+	</array>
+</dict>
+</plist>

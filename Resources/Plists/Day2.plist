@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Main</key>
+	<array>
+		<dict>
+			<key>Artist</key>
+			<string>Armin Van Buuren</string>
+			<key>Time</key>
+			<string>18:30</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>David Guetta</string>
+			<key>Time</key>
+			<string>19:45</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Sebastian Ingrosso</string>
+			<key>Time</key>
+			<string>20:30</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Knife Party</string>
+			<key>Time</key>
+			<string>22:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Laidback Luke</string>
+			<key>Time</key>
+			<string>23:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>DJ Snake</string>
+			<key>Time</key>
+			<string>23:45</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>BlasterJaxx</string>
+			<key>Time</key>
+			<string>00:30</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Kill The Noise</string>
+			<key>Time</key>
+			<string>01:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Vicetone</string>
+			<key>Time</key>
+			<string>02:15</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Jewelz - Sparks</string>
+			<key>Time</key>
+			<string>03:00</string>
+		</dict>
+	</array>
+	<key>Arena</key>
+	<array>
+		<dict>
+			<key>Artist</key>
+			<string>Marco Carola</string>
+			<key>Time</key>
+			<string>18:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Carl Cox</string>
+			<key>Time</key>
+			<string>19:30</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Erick Morillo</string>
+			<key>Time</key>
+			<string>20:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Nic Fanciulli</string>
+			<key>Time</key>
+			<string>21:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Riotgear</string>
+			<key>Time</key>
+			<string>22:45</string>
+		</dict>
+	</array>
+	<key>Radio</key>
+	<array>
+		<dict>
+			<key>Artist</key>
+			<string>Mossel</string>
+			<key>Time</key>
+			<string>12:30</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Emrah Is</string>
+			<key>Time</key>
+			<string>13:30</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Gelab</string>
+			<key>Time</key>
+			<string>14:15</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Rory Lynam</string>
+			<key>Time</key>
+			<string>15:45</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>David Mel</string>
+			<key>Time</key>
+			<string>17:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>DJ Contest Winners</string>
+			<key>Time</key>
+			<string>19:00</string>
+		</dict>
+	</array>
+</dict>
+</plist>

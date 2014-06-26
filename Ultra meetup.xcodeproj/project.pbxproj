@@ -17,10 +17,17 @@
 		5F106D1C195AF69300160B4D /* ProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F106D0D195AF69300160B4D /* ProfileView.m */; };
 		5F106D1D195AF69300160B4D /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F106D0E195AF69300160B4D /* ProfileView.xib */; };
 		5F106D22195AF69300160B4D /* utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F106D17195AF69300160B4D /* utilities.m */; };
+		5FDD2E9E195C9EA200297E2D /* LineupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDD2E9D195C9EA200297E2D /* LineupCell.m */; };
+		5FDD2EA1195CA45F00297E2D /* LineupTableSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDD2EA0195CA45F00297E2D /* LineupTableSectionView.m */; };
+		5FDD2EA3195CA47300297E2D /* LineupTableSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FDD2EA2195CA47300297E2D /* LineupTableSectionView.xib */; };
+		5FDD2EAF195CB1BD00297E2D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FDD2EA9195CB1BD00297E2D /* Images.xcassets */; };
+		5FDD2EB0195CB1BD00297E2D /* Day1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FDD2EAB195CB1BD00297E2D /* Day1.plist */; };
+		5FDD2EB1195CB1BD00297E2D /* Day2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FDD2EAC195CB1BD00297E2D /* Day2.plist */; };
+		5FDD2EB2195CB1BD00297E2D /* Day3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FDD2EAD195CB1BD00297E2D /* Day3.plist */; };
+		5FDD2EB3195CB1BD00297E2D /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FDD2EAE195CB1BD00297E2D /* TabBar.xcassets */; };
 		CF026117195483E800AF598A /* MapLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF026116195483E800AF598A /* MapLocation.m */; };
 		CF02611C1955739B00AF598A /* LineupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF02611B1955739B00AF598A /* LineupViewController.m */; };
 		CF026137195574E800AF598A /* BlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF026136195574E800AF598A /* BlurView.m */; };
-		CF02613A1955C0D500AF598A /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF0261391955C0D500AF598A /* TabBar.xcassets */; };
 		CF02613D1955E87800AF598A /* PeopleLookupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF02613C1955E87800AF598A /* PeopleLookupTableViewController.m */; };
 		CF0261431955FA7D00AF598A /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0261421955FA7D00AF598A /* ProfileTableViewController.m */; };
 		CF490851195445A50099C6E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF490850195445A50099C6E6 /* Foundation.framework */; };
@@ -34,7 +41,6 @@
 		CF49087D195445A50099C6E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF49087B195445A50099C6E6 /* InfoPlist.strings */; };
 		CF49087F195445A50099C6E6 /* Ultra_meetupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CF49087E195445A50099C6E6 /* Ultra_meetupTests.m */; };
 		CF4908931954468E0099C6E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF49088B1954468E0099C6E6 /* AppDelegate.m */; };
-		CF4908941954468E0099C6E6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF4908901954468E0099C6E6 /* Images.xcassets */; };
 		CF4908951954468E0099C6E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF4908921954468E0099C6E6 /* Main.storyboard */; };
 		CF49089D195448930099C6E6 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF49089C195448930099C6E6 /* MapViewController.m */; };
 		CF49089F195448CE0099C6E6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF49089E195448CE0099C6E6 /* MapKit.framework */; };
@@ -74,6 +80,16 @@
 		5F106D0E195AF69300160B4D /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		5F106D16195AF69300160B4D /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
 		5F106D17195AF69300160B4D /* utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = utilities.m; sourceTree = "<group>"; };
+		5FDD2E9C195C9EA200297E2D /* LineupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineupCell.h; sourceTree = "<group>"; };
+		5FDD2E9D195C9EA200297E2D /* LineupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineupCell.m; sourceTree = "<group>"; };
+		5FDD2E9F195CA45F00297E2D /* LineupTableSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineupTableSectionView.h; sourceTree = "<group>"; };
+		5FDD2EA0195CA45F00297E2D /* LineupTableSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineupTableSectionView.m; sourceTree = "<group>"; };
+		5FDD2EA2195CA47300297E2D /* LineupTableSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineupTableSectionView.xib; sourceTree = "<group>"; };
+		5FDD2EA9195CB1BD00297E2D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5FDD2EAB195CB1BD00297E2D /* Day1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Day1.plist; sourceTree = "<group>"; };
+		5FDD2EAC195CB1BD00297E2D /* Day2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Day2.plist; sourceTree = "<group>"; };
+		5FDD2EAD195CB1BD00297E2D /* Day3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Day3.plist; sourceTree = "<group>"; };
+		5FDD2EAE195CB1BD00297E2D /* TabBar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBar.xcassets; sourceTree = "<group>"; };
 		CF026115195483E800AF598A /* MapLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLocation.h; sourceTree = "<group>"; };
 		CF026116195483E800AF598A /* MapLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLocation.m; sourceTree = "<group>"; };
 		CF02611A1955739B00AF598A /* LineupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineupViewController.h; sourceTree = "<group>"; };
@@ -81,7 +97,6 @@
 		CF026135195574E800AF598A /* BlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurView.h; sourceTree = "<group>"; };
 		CF026136195574E800AF598A /* BlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurView.m; sourceTree = "<group>"; };
 		CF02613819557FC900AF598A /* AppDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDefines.h; sourceTree = "<group>"; };
-		CF0261391955C0D500AF598A /* TabBar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBar.xcassets; sourceTree = "<group>"; };
 		CF02613B1955E87800AF598A /* PeopleLookupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleLookupTableViewController.h; sourceTree = "<group>"; };
 		CF02613C1955E87800AF598A /* PeopleLookupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleLookupTableViewController.m; sourceTree = "<group>"; };
 		CF0261411955FA7D00AF598A /* ProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTableViewController.h; sourceTree = "<group>"; };
@@ -101,7 +116,6 @@
 		CF49087E195445A50099C6E6 /* Ultra_meetupTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ultra_meetupTests.m; sourceTree = "<group>"; };
 		CF49088A1954468E0099C6E6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CF49088B1954468E0099C6E6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		CF4908901954468E0099C6E6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CF4908921954468E0099C6E6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CF49089B195448930099C6E6 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		CF49089C195448930099C6E6 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
@@ -214,6 +228,26 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		5FDD2EA8195CB1BD00297E2D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5FDD2EA9195CB1BD00297E2D /* Images.xcassets */,
+				5FDD2EAE195CB1BD00297E2D /* TabBar.xcassets */,
+				5FDD2EAA195CB1BD00297E2D /* Plists */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5FDD2EAA195CB1BD00297E2D /* Plists */ = {
+			isa = PBXGroup;
+			children = (
+				5FDD2EAB195CB1BD00297E2D /* Day1.plist */,
+				5FDD2EAC195CB1BD00297E2D /* Day2.plist */,
+				5FDD2EAD195CB1BD00297E2D /* Day3.plist */,
+			);
+			path = Plists;
+			sourceTree = "<group>";
+		};
 		CF026134195574D400AF598A /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +257,11 @@
 				CFA847C5195B26E100A2D805 /* SimpleInputTableViewCell.m */,
 				CFA847CD195B391000A2D805 /* PhotosTableViewCell.h */,
 				CFA847CE195B391000A2D805 /* PhotosTableViewCell.m */,
+				5FDD2E9C195C9EA200297E2D /* LineupCell.h */,
+				5FDD2E9D195C9EA200297E2D /* LineupCell.m */,
+				5FDD2E9F195CA45F00297E2D /* LineupTableSectionView.h */,
+				5FDD2EA0195CA45F00297E2D /* LineupTableSectionView.m */,
+				5FDD2EA2195CA47300297E2D /* LineupTableSectionView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -232,7 +271,7 @@
 			children = (
 				CF4908911954468E0099C6E6 /* Storyboards */,
 				CF4908881954468E0099C6E6 /* Classes */,
-				CF49088F1954468E0099C6E6 /* Resoruces */,
+				5FDD2EA8195CB1BD00297E2D /* Resources */,
 				CF490856195445A50099C6E6 /* Ultra meetup */,
 				CF490878195445A50099C6E6 /* Ultra meetupTests */,
 				CF49084F195445A50099C6E6 /* Frameworks */,
@@ -347,15 +386,6 @@
 				CFA847C2195B221800A2D805 /* CountryList.m */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		CF49088F1954468E0099C6E6 /* Resoruces */ = {
-			isa = PBXGroup;
-			children = (
-				CF4908901954468E0099C6E6 /* Images.xcassets */,
-				CF0261391955C0D500AF598A /* TabBar.xcassets */,
-			);
-			path = Resoruces;
 			sourceTree = "<group>";
 		};
 		CF4908911954468E0099C6E6 /* Storyboards */ = {
@@ -496,11 +526,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FDD2EA3195CA47300297E2D /* LineupTableSectionView.xib in Resources */,
+				5FDD2EAF195CB1BD00297E2D /* Images.xcassets in Resources */,
 				CF4908951954468E0099C6E6 /* Main.storyboard in Resources */,
+				5FDD2EB1195CB1BD00297E2D /* Day2.plist in Resources */,
+				5FDD2EB0195CB1BD00297E2D /* Day1.plist in Resources */,
+				5FDD2EB3195CB1BD00297E2D /* TabBar.xcassets in Resources */,
+				5FDD2EB2195CB1BD00297E2D /* Day3.plist in Resources */,
 				CF49085B195445A50099C6E6 /* InfoPlist.strings in Resources */,
 				5F106D1D195AF69300160B4D /* ProfileView.xib in Resources */,
-				CF4908941954468E0099C6E6 /* Images.xcassets in Resources */,
-				CF02613A1955C0D500AF598A /* TabBar.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,6 +589,7 @@
 				5F106CF0195AB50D00160B4D /* ChooseGroupView.m in Sources */,
 				5F106CEF195AB50D00160B4D /* ImageLabelView.m in Sources */,
 				CF02613D1955E87800AF598A /* PeopleLookupTableViewController.m in Sources */,
+				5FDD2E9E195C9EA200297E2D /* LineupCell.m in Sources */,
 				5F106D18195AF69300160B4D /* ChatView.m in Sources */,
 				5F106D1C195AF69300160B4D /* ProfileView.m in Sources */,
 				CF49089D195448930099C6E6 /* MapViewController.m in Sources */,
@@ -567,6 +602,7 @@
 				CF49085D195445A50099C6E6 /* main.m in Sources */,
 				CF02611C1955739B00AF598A /* LineupViewController.m in Sources */,
 				5F106D22195AF69300160B4D /* utilities.m in Sources */,
+				5FDD2EA1195CA45F00297E2D /* LineupTableSectionView.m in Sources */,
 				CF026117195483E800AF598A /* MapLocation.m in Sources */,
 				5F106D19195AF69300160B4D /* RoomView.m in Sources */,
 				CFA847C3195B221800A2D805 /* CountryList.m in Sources */,

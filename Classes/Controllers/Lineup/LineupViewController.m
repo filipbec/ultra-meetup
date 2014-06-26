@@ -7,6 +7,8 @@
 //
 
 #import "LineupViewController.h"
+#import "LineupCell.h"
+#import "LineupTableSectionView.h"
 
 typedef NS_ENUM(NSInteger, Day) {
     Day1 = 1,
@@ -14,9 +16,15 @@ typedef NS_ENUM(NSInteger, Day) {
     Day3 = 3
 };
 
-@interface LineupViewController ()
+@interface LineupViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *topBarButtons;
+@property (weak, nonatomic) IBOutlet UIView *activeButtonIndicatorView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (strong, nonatomic) NSArray *lineupMainArray;
+@property (strong, nonatomic) NSArray *lineupArenaArray;
+@property (strong, nonatomic) NSArray *lineupRadioArray;
 
 @end
 
@@ -38,6 +46,7 @@ typedef NS_ENUM(NSInteger, Day) {
     // Do any additional setup after loading the view.
     
     [self setupViews];
+    [self refreshTableViewWithDay:1];
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,11 +111,32 @@ typedef NS_ENUM(NSInteger, Day) {
         [button setAttributedTitle:selectedString forState:UIControlStateHighlighted];
         [button setAttributedTitle:selectedString forState:UIControlStateSelected];
     }
+    
+    // Active button indicator
+    self.activeButtonIndicatorView.backgroundColor = PURPLE_COLOR;
+    
+    // Table view
+    CGFloat dummyViewHeight = 60.0;
+    UIView *dummyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, dummyViewHeight)];
+    self.tableView.tableHeaderView = dummyView;
+    self.tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0);
+}
+
+- (void)refreshTableViewWithDay:(NSInteger)dayNumber
+{
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"Day%ld", (long)dayNumber] ofType:@"plist"];
+    NSDictionary *lineup = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    
+    self.lineupMainArray = lineup[@"Main"];
+    self.lineupArenaArray = lineup[@"Arena"];
+    self.lineupRadioArray = lineup[@"Radio"];
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark - Button action
 
-- (IBAction)dayButtonActionHandler:(id)sender
+- (IBAction)dayButtonActionHandler:(UIButton *)sender
 {
     for (UIButton *button in self.topBarButtons) {
         if ([button isEqual:sender]) {
@@ -116,18 +146,109 @@ typedef NS_ENUM(NSInteger, Day) {
         }
     }
     
+    CGRect newActiveButtonIndicatorViewFrame = self.activeButtonIndicatorView.frame;
+    newActiveButtonIndicatorViewFrame.origin.x = sender.frame.origin.x;
     
+    [UIView animateWithDuration:0.3 animations:^{
+        self.activeButtonIndicatorView.frame = newActiveButtonIndicatorViewFrame;
+    }];
+    
+    Day day = sender.tag;
+    [self refreshTableViewWithDay:day];
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - Table view delegate
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"LineupTableSectionView" owner:self options:nil];
+    LineupTableSectionView *lineupTableSectionView = topLevelObjects[0];
+    
+    switch (section) {
+        case 0:
+            lineupTableSectionView.titleLabel.text = @"MAIN STAGE";
+            break;
+            
+        case 1:
+            lineupTableSectionView.titleLabel.text = @"ULTRA WORLDWIDE ARENA";
+            break;
+            
+        case 2:
+            lineupTableSectionView.titleLabel.text = @"UMF RADIO";
+            break;
+            
+        default:
+            break;
+    }
+    
+    return lineupTableSectionView;
 }
-*/
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 60.0;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 3;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+            return [self.lineupMainArray count];
+            break;
+            
+        case 1:
+            return [self.lineupArenaArray count];
+            break;
+            
+        case 2:
+            return [self.lineupRadioArray count];
+            break;
+            
+        default:
+            return 0;
+            break;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"LineupCell";
+    
+    LineupCell *cell = (LineupCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    NSDictionary *eventDictionary = nil;
+    
+    switch (indexPath.section) {
+        case 0:
+            eventDictionary = self.lineupMainArray[indexPath.row];
+            break;
+            
+        case 1:
+            eventDictionary = self.lineupArenaArray[indexPath.row];
+            break;
+            
+        case 2:
+            eventDictionary = self.lineupRadioArray[indexPath.row];
+            break;
+            
+        default:
+            break;
+    }
+    
+    cell.timeLabel.text = eventDictionary[@"Time"];
+    cell.artistLabel.text = eventDictionary[@"Artist"];
+    
+    return cell;
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
 
 @end

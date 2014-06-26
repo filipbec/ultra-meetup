@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Main</key>
+	<array>
+		<dict>
+			<key>Artist</key>
+			<string>Steve Aoki</string>
+			<key>Time</key>
+			<string>18:15</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Tiësto</string>
+			<key>Time</key>
+			<string>19:15</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Alesso</string>
+			<key>Time</key>
+			<string>20:45</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Afrojack</string>
+			<key>Time</key>
+			<string>21:15</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>W&amp;W</string>
+			<key>Time</key>
+			<string>22:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Sunnery James &amp; Ryan Marciano</string>
+			<key>Time</key>
+			<string>23:30</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Danny Avila</string>
+			<key>Time</key>
+			<string>00:30</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>TwoLoud</string>
+			<key>Time</key>
+			<string>01:30</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Mykris</string>
+			<key>Time</key>
+			<string>02:15</string>
+		</dict>
+	</array>
+	<key>Arena</key>
+	<array>
+		<dict>
+			<key>Artist</key>
+			<string>Paul Van Dyk</string>
+			<key>Time</key>
+			<string>18:30</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Aly &amp; Fila</string>
+			<key>Time</key>
+			<string>19:45</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Cosmic Gate</string>
+			<key>Time</key>
+			<string>20:30</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Andrew Rayel</string>
+			<key>Time</key>
+			<string>21:30</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Orjan Nilsen</string>
+			<key>Time</key>
+			<string>22:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>W&amp;W</string>
+			<key>Time</key>
+			<string>23:15</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Jochen Miller</string>
+			<key>Time</key>
+			<string>00:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Marlo</string>
+			<key>Time</key>
+			<string>01:00</string>
+		</dict>
+	</array>
+	<key>Radio</key>
+	<array>
+		<dict>
+			<key>Artist</key>
+			<string>Mayavanya</string>
+			<key>Time</key>
+			<string>13:30</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Vanillaz</string>
+			<key>Time</key>
+			<string>14:15</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>DJ Max Cartoux</string>
+			<key>Time</key>
+			<string>15:30</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Vice V</string>
+			<key>Time</key>
+			<string>16:30</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>Adriano Fuerte</string>
+			<key>Time</key>
+			<string>18:00</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>DJ Max</string>
+			<key>Time</key>
+			<string>19:15</string>
+		</dict>
+		<dict>
+			<key>Artist</key>
+			<string>DJ Contest Winners</string>
+			<key>Time</key>
+			<string>20:00</string>
+		</dict>
+	</array>
+</dict>
+</plist>
