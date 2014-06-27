@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "AppDelegate.h"
+#import "App.h"
 
 @interface LoginViewController ()
 
@@ -87,6 +88,7 @@
     
     UITabBarController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"TabBarVC"];
     [appDelegate.window setRootViewController:vc];
+    
 }
 
 @end

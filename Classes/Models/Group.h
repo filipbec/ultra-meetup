@@ -16,16 +16,14 @@
 @property (nonatomic, assign) NSInteger gender;
 @property (nonatomic, strong) NSArray *members;
 @property (nonatomic, strong) NSArray *photos;
-@property (nonatomic, strong) NSArray *likedGroups;
-@property (nonatomic, strong) NSArray *dislikedGroups;
+
+@property (nonatomic, strong) PFObject *parseGroup;
 
 - (instancetype)initWithGroupID:(NSString *)groupID
                         country: (NSString *)country
                groupDescription: (NSString *)groupDescription
                          gender: (NSInteger)gender
                         members: (NSArray *)members
-                         photos: (NSArray *)photos
-                    likedGroups: (NSArray *)likedGroups
-                 dislikedGroups: (NSArray *)dislikedGroups;
+                         photos: (NSArray *)photos;
 
 @end

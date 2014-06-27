@@ -10,6 +10,7 @@
 #import "Group.h"
 #import <MDCSwipeToChoose/MDCSwipeToChoose.h>
 #import <SVProgressHUD.h>
+#import "App.h"
 
 static const CGFloat ChoosePersonButtonHorizontalPadding = 80.f;
 static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
@@ -66,7 +67,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                 [extractedImages addObject:image];
             }
             
-            Group *group = [[Group alloc] initWithGroupID:groupID country:country groupDescription:description gender:gender.integerValue members:extractedNames photos:extractedImages likedGroups:nil dislikedGroups:nil];
+            Group *group = [[Group alloc] initWithGroupID:groupID country:country groupDescription:description gender:gender.integerValue members:extractedNames photos:extractedImages];
+            group.parseGroup = groupObject;
             
             [groups addObject:group];
         }
@@ -104,11 +106,13 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 {
     // MDCSwipeToChooseView shows "NOPE" on swipes to the left,
     // and "LIKED" on swipes to the right.
+    
     if (direction == MDCSwipeDirectionLeft) {
-        //        NSLog(@"You noped %@.", self.currentPerson.name);
+        [self.currentGroup.parseGroup addObject:[App instance].myParseGroup forKey:@"likedBy"];
     } else {
-        //        NSLog(@"You liked %@.", self.currentPerson.name);
+        [self.currentGroup.parseGroup addObject:[App instance].myParseGroup forKey:@"dislikedBy"];
     }
+    [self.currentGroup.parseGroup saveEventually];
     
     // MDCSwipeToChooseView removes the view from the view hierarchy
     // after it is swiped (this behavior can be customized via the
@@ -133,7 +137,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (void)setFrontCardView:(ChooseGroupView *)frontCardView
 {
     _frontCardView = frontCardView;
-    self.currentPerson = frontCardView.group;
+    self.currentGroup = frontCardView.group;
 }
 
 - (ChooseGroupView *)popPersonViewWithFrame:(CGRect)frame
@@ -227,13 +231,16 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 #pragma mark Control Events
 
 // Programmatically "nopes" the front card view.
+
 - (void)nopeFrontCardView {
     [self.frontCardView mdc_swipe:MDCSwipeDirectionLeft];
 }
 
 // Programmatically "likes" the front card view.
+
 - (void)likeFrontCardView {
     [self.frontCardView mdc_swipe:MDCSwipeDirectionRight];
+
 }
 
 @end

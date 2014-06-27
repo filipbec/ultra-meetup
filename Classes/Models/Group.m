@@ -16,8 +16,6 @@
                          gender:(NSInteger)gender
                         members:(NSArray *)members
                          photos:(NSArray *)photos
-                    likedGroups:(NSArray *)likedGroups
-                 dislikedGroups:(NSArray *)dislikedGroups
 {
     self = [super init];
     if (self) {
@@ -27,8 +25,6 @@
         self.gender =  gender;
         self.members = members;
         self.photos = photos;
-        self.likedGroups = likedGroups;
-        self.dislikedGroups = dislikedGroups;
     }
     return self;
 }

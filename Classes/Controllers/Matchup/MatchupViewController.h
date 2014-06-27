@@ -11,7 +11,7 @@
 
 @interface MatchupViewController : UIViewController <MDCSwipeToChooseDelegate>
 
-@property (nonatomic, strong) Group *currentPerson;
+@property (nonatomic, strong) Group *currentGroup;
 @property (nonatomic, strong) ChooseGroupView *frontCardView;
 @property (nonatomic, strong) ChooseGroupView *backCardView;
 

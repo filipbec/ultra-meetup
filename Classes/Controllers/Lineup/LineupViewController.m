@@ -9,6 +9,7 @@
 #import "LineupViewController.h"
 #import "LineupCell.h"
 #import "LineupTableSectionView.h"
+#import "App.h"
 
 typedef NS_ENUM(NSInteger, Day) {
     Day1 = 1,
@@ -45,8 +46,19 @@ typedef NS_ENUM(NSInteger, Day) {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
     [self setupViews];
     [self refreshTableViewWithDay:1];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Group"];
+    [query whereKey:@"users" containsAllObjectsInArray:@[[PFUser currentUser]]];
+    
+    [SVProgressHUD show];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        [SVProgressHUD dismiss];
+        
+        [App instance].myParseGroup = object;
+    }];
 }
 
 - (void)didReceiveMemoryWarning

@@ -48,6 +48,7 @@
 		CFA847C6195B26E100A2D805 /* SimpleInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA847C5195B26E100A2D805 /* SimpleInputTableViewCell.m */; };
 		CFA847CF195B391000A2D805 /* PhotosTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA847CE195B391000A2D805 /* PhotosTableViewCell.m */; };
 		CFA847D1195B411E00A2D805 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA847D0195B411E00A2D805 /* QuartzCore.framework */; };
+		CFA847D4195DADEB00A2D805 /* App.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA847D3195DADEB00A2D805 /* App.m */; };
 		CFF1C8841959F30F008683FF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1C8831959F30F008683FF /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -127,6 +128,8 @@
 		CFA847CD195B391000A2D805 /* PhotosTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosTableViewCell.h; sourceTree = "<group>"; };
 		CFA847CE195B391000A2D805 /* PhotosTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosTableViewCell.m; sourceTree = "<group>"; };
 		CFA847D0195B411E00A2D805 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CFA847D2195DADEB00A2D805 /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
+		CFA847D3195DADEB00A2D805 /* App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = App.m; sourceTree = "<group>"; };
 		CFF1C8821959F30F008683FF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		CFF1C8831959F30F008683FF /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		EE28A7DBB8A44D94A27E028F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -358,6 +361,8 @@
 				CF49088A1954468E0099C6E6 /* AppDelegate.h */,
 				CF49088B1954468E0099C6E6 /* AppDelegate.m */,
 				CF02613819557FC900AF598A /* AppDefines.h */,
+				CFA847D2195DADEB00A2D805 /* App.h */,
+				CFA847D3195DADEB00A2D805 /* App.m */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -599,6 +604,7 @@
 				CFF1C8841959F30F008683FF /* LoginViewController.m in Sources */,
 				CFA847C6195B26E100A2D805 /* SimpleInputTableViewCell.m in Sources */,
 				CFA847CF195B391000A2D805 /* PhotosTableViewCell.m in Sources */,
+				CFA847D4195DADEB00A2D805 /* App.m in Sources */,
 				CF49085D195445A50099C6E6 /* main.m in Sources */,
 				CF02611C1955739B00AF598A /* LineupViewController.m in Sources */,
 				5F106D22195AF69300160B4D /* utilities.m in Sources */,
