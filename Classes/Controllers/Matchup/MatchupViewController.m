@@ -42,6 +42,11 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
     if (![App instance].myGroup) {
         self.bacgroundImageView.alpha = 0.0;
@@ -61,7 +66,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
             
             self.groups = [objects mutableCopy];
             [SVProgressHUD dismiss];
-            
             // Display the first ChoosePersonView in front. Users can swipe to indicate
             // whether they like or dislike the person displayed.
             self.frontCardView = [self popPersonViewWithFrame:[self frontCardViewFrame]];
@@ -74,7 +78,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
             [self.view insertSubview:self.backCardView belowSubview:self.frontCardView];
         }];
     }
-    
 }
 
 - (NSUInteger)supportedInterfaceOrientations
@@ -131,8 +134,13 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 - (ChooseGroupView *)popPersonViewWithFrame:(CGRect)frame
 {
-    if ([self.groups count] == 0) {
+    if ([self.groups count] <= 0) {
+        self.infoLabel.text = @"There is no new groups";
+        self.bacgroundImageView.alpha = 0.0;
         return nil;
+        
+    } else {
+        self.bacgroundImageView.alpha = 1.0;
     }
     
     // UIView+MDCSwipeToChoose and MDCSwipeToChooseView are heavily customizable.
