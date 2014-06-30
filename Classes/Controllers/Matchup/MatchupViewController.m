@@ -107,12 +107,12 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // MDCSwipeToChooseView shows "NOPE" on swipes to the left,
     // and "LIKED" on swipes to the right.
     
-    if (direction == MDCSwipeDirectionLeft) {
-        [self.currentGroup.parseGroup addObject:[App instance].myParseGroup forKey:@"likedBy"];
-    } else {
-        [self.currentGroup.parseGroup addObject:[App instance].myParseGroup forKey:@"dislikedBy"];
-    }
-    [self.currentGroup.parseGroup saveEventually];
+//    if (direction == MDCSwipeDirectionLeft) {
+//        [self.currentGroup.parseGroup addObject:[App instance].myParseGroup forKey:@"likedBy"];
+//    } else {
+//        [self.currentGroup.parseGroup addObject:[App instance].myParseGroup forKey:@"dislikedBy"];
+//    }
+//    [self.currentGroup.parseGroup saveEventually];
     
     // MDCSwipeToChooseView removes the view from the view hierarchy
     // after it is swiped (this behavior can be customized via the

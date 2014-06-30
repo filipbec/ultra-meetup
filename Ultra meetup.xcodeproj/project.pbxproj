@@ -496,6 +496,7 @@
 				ORGANIZATIONNAME = "Infinum Ltd.";
 				TargetAttributes = {
 					CF49084C195445A50099C6E6 = {
+						DevelopmentTeam = 5F5M64F878;
 						SystemCapabilities = {
 							com.apple.iOS = {
 								enabled = 1;
@@ -731,6 +732,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -739,6 +741,7 @@
 				GCC_PREFIX_HEADER = "Ultra meetup/Ultra meetup-Prefix.pch";
 				INFOPLIST_FILE = "Ultra meetup/Ultra meetup-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "C00CD67D-EFBC-432E-BAE0-CF5CC1A50E32";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -749,6 +752,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -757,6 +761,7 @@
 				GCC_PREFIX_HEADER = "Ultra meetup/Ultra meetup-Prefix.pch";
 				INFOPLIST_FILE = "Ultra meetup/Ultra meetup-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "C00CD67D-EFBC-432E-BAE0-CF5CC1A50E32";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
