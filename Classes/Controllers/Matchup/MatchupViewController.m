@@ -48,6 +48,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 {
     [super viewWillAppear:animated];
     
+    self.bacgroundImageView.alpha = 1.0;
+    
     if (![App instance].myGroup) {
         self.bacgroundImageView.alpha = 0.0;
         self.infoLabel.text = @"In order to browse other people create your own group.";
@@ -56,24 +58,23 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
         [SVProgressHUD show];
         
         Group *g = [App instance].myGroup;
-        
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT (%@ IN likedBy) AND NOT (%@ IN dislikedBy)", g, g];
         PFQuery *query = [PFQuery queryWithClassName:@"Group" predicate:predicate];
         
         [query includeKey:@"users"];
         
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            
-            self.groups = [objects mutableCopy];
             [SVProgressHUD dismiss];
-            // Display the first ChoosePersonView in front. Users can swipe to indicate
-            // whether they like or dislike the person displayed.
+            self.groups = [objects mutableCopy];
+            
+            if (self.groups.count <= 0) {
+                self.infoLabel.text = @"There is no new groups";
+                self.bacgroundImageView.alpha = 0.0;
+            }
+
             self.frontCardView = [self popPersonViewWithFrame:[self frontCardViewFrame]];
             [self.view addSubview:self.frontCardView];
             
-            // Display the second ChoosePersonView in back. This view controller uses
-            // the MDCSwipeToChooseDelegate protocol methods to update the front and
-            // back views after each user swipe.
             self.backCardView = [self popPersonViewWithFrame:[self backCardViewFrame]];
             [self.view insertSubview:self.backCardView belowSubview:self.frontCardView];
         }];
@@ -100,9 +101,15 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // and "LIKED" on swipes to the right.
     
     if (direction == MDCSwipeDirectionLeft) {
-        [self.currentGroup addObject:[App instance].myGroup forKey:@"likedBy"];
-    } else {
         [self.currentGroup addObject:[App instance].myGroup forKey:@"dislikedBy"];
+    } else {
+        [self.currentGroup addObject:[App instance].myGroup forKey:@"likedBy"];
+        
+        Group *myGroup = [App instance].myGroup;
+        if ([myGroup.likedBy containsObject:self.currentGroup]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"MATCH" message:@"OLE!!!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
     }
     [self.currentGroup saveEventually];
     
@@ -111,6 +118,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // MDCSwipeOptions class). Since the front card view is gone, we
     // move the back card to the front, and create a new back card.
     self.frontCardView = self.backCardView;
+    
     if ((self.backCardView = [self popPersonViewWithFrame:[self backCardViewFrame]])) {
         // Fade the back card into view.
         self.backCardView.alpha = 0.f;
@@ -121,6 +129,11 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                          animations:^{
                              self.backCardView.alpha = 1.f;
                          } completion:nil];
+    }
+    
+    if (!self.frontCardView.subviews && !self.backCardView.superview && self.groups.count <= 0) {
+        self.infoLabel.text = @"There is no new groups";
+        self.bacgroundImageView.alpha = 0.0;
     }
 }
 
@@ -135,8 +148,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (ChooseGroupView *)popPersonViewWithFrame:(CGRect)frame
 {
     if ([self.groups count] <= 0) {
-        self.infoLabel.text = @"There is no new groups";
-        self.bacgroundImageView.alpha = 0.0;
         return nil;
         
     } else {

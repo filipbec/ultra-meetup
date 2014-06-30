@@ -23,4 +23,22 @@
     return @"Group";
 }
 
+- (BOOL)isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    } else if (![super isKindOfClass:[self class]]) {
+        return NO;
+    }
+    
+    Group *g = other;
+    return [self.objectId isEqualToString:g.objectId];
+}
+
+- (NSUInteger)hash
+{
+    return [self.objectId hash];
+}
+
+
 @end
