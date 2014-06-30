@@ -259,7 +259,6 @@ typedef NS_ENUM(NSInteger, Gender) {
 {
     if (!self.descriptionCell) {
         self.descriptionCell = [tableView dequeueReusableCellWithIdentifier:GroupDescriptionCellIdentifier forIndexPath:indexPath];
-        [self.descriptionCell.textView addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
     }
     
     self.descriptionCell.textView.text = self.group.groupDescription;
@@ -277,6 +276,8 @@ typedef NS_ENUM(NSInteger, Gender) {
     [cell.photo2 addTarget:self action:@selector(photoButtonActionHandler:) forControlEvents:UIControlEventTouchUpInside];
     [cell.photo3 addTarget:self action:@selector(photoButtonActionHandler:) forControlEvents:UIControlEventTouchUpInside];
     [cell.photo4 addTarget:self action:@selector(photoButtonActionHandler:) forControlEvents:UIControlEventTouchUpInside];
+    
+    cell.photo1.userInteractionEnabled = cell.photo2.userInteractionEnabled = cell.photo3.userInteractionEnabled = cell.photo4.userInteractionEnabled = self.tableView.editing;
     
     NSInteger i = 0;
     NSArray *photoButtons = @[cell.photo1, cell.photo2, cell.photo3, cell.photo4];
@@ -382,6 +383,7 @@ typedef NS_ENUM(NSInteger, Gender) {
 
 #pragma mark -  Picker view data source
 // returns the number of 'columns' to display.
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     if (pickerView == self.countryPicker) {
@@ -501,7 +503,6 @@ typedef NS_ENUM(NSInteger, Gender) {
 
         [self.tableView reloadData];
     }];
-    
 }
 
 - (IBAction)doneBarButtonItemTapped:(UIBarButtonItem *)sender
@@ -563,18 +564,6 @@ typedef NS_ENUM(NSInteger, Gender) {
         
         [self.navigationItem.rightBarButtonItem setTitle:@"Save"];
     }
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    [self.tableView beginUpdates];
-    [self.tableView endUpdates];
-}
-
-
-- (void)dealloc
-{
-    [self.descriptionCell.textView removeObserver:self forKeyPath:@"text"];
 }
 
 @end

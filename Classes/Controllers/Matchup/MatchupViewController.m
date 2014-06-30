@@ -50,7 +50,11 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     } else {
         [SVProgressHUD show];
         
-        PFQuery *query = [PFQuery queryWithClassName:@"Group"];
+        Group *g = [App instance].myGroup;
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT (%@ IN likedBy) AND NOT (%@ IN dislikedBy)", g, g];
+        PFQuery *query = [PFQuery queryWithClassName:@"Group" predicate:predicate];
+        
         [query includeKey:@"users"];
         
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
