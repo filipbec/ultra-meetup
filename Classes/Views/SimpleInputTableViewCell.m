@@ -43,6 +43,14 @@
     // Configure the view for the selected state
 }
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (self.textField.enabled) {
+        return YES;
+    }
+    return NO;
+}
+
 #pragma mark - Keyboard
 
 - (void)resignKeyboard

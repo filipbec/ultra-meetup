@@ -10,23 +10,17 @@
 
 @implementation Group
 
-- (instancetype)initWithGroupID:(NSString *)groupID
-                        country:(NSString *)country
-               groupDescription:(NSString *)groupDescription
-                         gender:(NSInteger)gender
-                        members:(NSArray *)members
-                         photos:(NSArray *)photos
+@dynamic country;
+@dynamic gender;
+@dynamic images;
+@dynamic users;
+@dynamic dislikedBy;
+@dynamic likedBy;
+@dynamic groupDescription;
+
++ (NSString *)parseClassName
 {
-    self = [super init];
-    if (self) {
-        self.groupID = groupID;
-        self.country = country;
-        self.groupDescription = groupDescription;
-        self.gender =  gender;
-        self.members = members;
-        self.photos = photos;
-    }
-    return self;
+    return @"Group";
 }
 
 @end

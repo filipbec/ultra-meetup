@@ -45,7 +45,11 @@ static const CGFloat ChoosePersonViewImageLabelWidth = 42.f;
     self = [super initWithFrame:frame options:options];
     if (self) {
         _group = group;
-        self.imageView.image = _group.photos[0];
+        
+        PFFile *file = [_group.images firstObject];
+        [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            self.imageView.image = [UIImage imageWithData:data];
+        }];
 
         self.imageView.contentMode = UIViewContentModeScaleAspectFill;
 
@@ -82,8 +86,18 @@ static const CGFloat ChoosePersonViewImageLabelWidth = 42.f;
                               170.0,
                               CGRectGetHeight(_informationView.frame) - topPadding);
     _nameLabel = [[UILabel alloc] initWithFrame:frame];
-    NSString *name = [_group.members componentsJoinedByString:@", "];
-    _nameLabel.text = [NSString stringWithFormat:@"%@", name];
+
+    NSMutableArray *names = [NSMutableArray array];
+    for (PFUser *user in _group.users) {
+        NSString *name = [user objectForKey:@"name"];
+        if (name) {
+            [names addObject:name];
+        }
+    }
+    
+    NSString *groupname = [names componentsJoinedByString:@", "];
+    _nameLabel.text = groupname;
+    
     _nameLabel.textColor = [UIColor purpleColor];
     [_informationView addSubview:_nameLabel];
 }

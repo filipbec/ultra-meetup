@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "PeopleLookupTableViewController.h"
+#import "Group.h"
 
 @interface ProfileTableViewController : UITableViewController <PeopleLookupDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
+@property (nonatomic, retain) Group *group;
 
 @end

@@ -52,12 +52,13 @@ typedef NS_ENUM(NSInteger, Day) {
     
     PFQuery *query = [PFQuery queryWithClassName:@"Group"];
     [query whereKey:@"users" containsAllObjectsInArray:@[[PFUser currentUser]]];
+    [query includeKey:@"users"];
     
     [SVProgressHUD show];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         [SVProgressHUD dismiss];
         
-        [App instance].myParseGroup = object;
+        [App instance].myGroup = (Group *)object;
     }];
 }
 

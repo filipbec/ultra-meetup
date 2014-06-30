@@ -7,9 +7,14 @@
 //
 
 #import "ProfileTableViewController.h"
+
 #import "SimpleInputTableViewCell.h"
 #import "PhotosTableViewCell.h"
+#import "GroupDescriptionTableViewCell.h"
+
 #import "CountryList.h"
+#import "App.h"
+#import "Group.h"
 #import <SVProgressHUD.h>
 
 typedef NS_ENUM(NSInteger, Gender) {
@@ -35,7 +40,10 @@ typedef NS_ENUM(NSInteger, Gender) {
 
 @property (nonatomic, retain) NSMutableArray *photos;
 
+@property (nonatomic, retain) GroupDescriptionTableViewCell *descriptionCell;
+
 - (IBAction)doneBarButtonItemTapped:(UIBarButtonItem *)sender;
+
 @end
 
 @implementation ProfileTableViewController
@@ -53,17 +61,75 @@ typedef NS_ENUM(NSInteger, Gender) {
 {
     [super viewDidLoad];
     
-    self.tableView.editing = YES;
     self.tableView.allowsSelectionDuringEditing = YES;
-    
-    self.friends = [[NSMutableOrderedSet alloc] init];
-    self.photos = [[NSMutableArray alloc] init];
     
     self.countryList = [[CountryList alloc] init];
     self.genderList = [[NSArray alloc] initWithObjects:@"Male", @"Female", @"Mixed", nil];
     
-    self.selectedCountry = nil;
-    self.selectedGender = GenderNone;
+    self.group = [App instance].myGroup;
+    
+    if (self.group) {
+        self.tableView.editing = NO;
+        
+        self.friends = [[NSMutableOrderedSet alloc] initWithArray:self.group.users];
+        self.selectedCountry = self.group.country;
+        self.selectedGender = self.group.gender;
+        
+        NSInteger countryIndex = [self.countryList.objects indexOfObject:self.selectedCountry];
+        [self.countryPicker selectRow:countryIndex inComponent:0 animated:NO];
+        
+        switch (self.selectedGender) {
+            case GenderMale:
+                [self.genderPicker selectRow:0 inComponent:0 animated:NO];
+                break;
+                
+            case GenderFemale:
+                [self.genderPicker selectRow:1 inComponent:0 animated:NO];
+                break;
+                
+            case GenderMixed:
+                [self.genderPicker selectRow:2 inComponent:0 animated:NO];
+                break;
+                
+            default:
+                break;
+        }
+        
+        for (PFFile *file in self.group.images) {
+            [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                if (data) {
+                    UIImage *image = [[UIImage alloc] initWithData:data];
+                    if (!self.photos) {
+                        self.photos = [[NSMutableArray alloc] init];
+                    }
+                    [self.photos addObject:image];
+                    
+                    [self.tableView reloadData];
+                }
+            }];
+        }
+        
+    } else {
+        self.tableView.editing = YES;
+        
+        self.group = [Group object];
+        
+        self.friends = [[NSMutableOrderedSet alloc] init];
+        self.photos = [[NSMutableArray alloc] init];
+        
+        self.selectedCountry = nil;
+        self.selectedGender = GenderNone;
+    }
+    
+    if (self.tableView.editing) {
+        [self.navigationItem.rightBarButtonItem setTitle:@"Save"];
+        
+    } else if ([App instance].myGroup) {
+        [self.navigationItem.rightBarButtonItem setTitle:@"Edit"];
+        
+    } else {
+        [self.navigationItem.rightBarButtonItem setTitle:@"Create"];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,19 +142,25 @@ typedef NS_ENUM(NSInteger, Gender) {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
         case 0:
-            return self.friends.count + 1;
+            if (tableView.editing) {
+                return self.friends.count + 1;
+            }
+            return self.friends.count;
             
         case 1:
             return 2;
             
         case 2:
+            return 1;
+            
+        case 3:
             return 1;
     }
     
@@ -97,9 +169,13 @@ typedef NS_ENUM(NSInteger, Gender) {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 2) {
+    if (indexPath.section == 3) {
         return 320;
+        
+    } else if (indexPath.section == 2) {
+        return MAX(50, self.descriptionCell.textView.contentSize.height + 10);
     }
+    
     return 50;
 }
 
@@ -114,6 +190,9 @@ typedef NS_ENUM(NSInteger, Gender) {
             
         case 2:
             return [self tableView:tableView cellForThirdSectionWithIndexPath:indexPath];
+            
+        case 3:
+            return [self tableView:tableView cellForFourthSectionWithIndexPath:indexPath];
     }
     return nil;
 }
@@ -128,7 +207,12 @@ typedef NS_ENUM(NSInteger, Gender) {
         return cell;
     }
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddMemberCell" forIndexPath:indexPath];
+    SimpleInputTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddMemberCell" forIndexPath:indexPath];
+    cell.textField.placeholder = @"Add member";
+    cell.textField.text = nil;
+    cell.textField.userInteractionEnabled = NO;
+    cell.textField.enabled = NO;
+    
     return cell;
 }
 
@@ -139,8 +223,8 @@ typedef NS_ENUM(NSInteger, Gender) {
             SimpleInputTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddMemberCell" forIndexPath:indexPath];
             
             cell.textField.placeholder = @"Country";
-            cell.textField.userInteractionEnabled = YES;
-            cell.textField.enabled = YES;
+            cell.textField.userInteractionEnabled = self.tableView.editing;
+            cell.textField.enabled = self.tableView.editing;
             
             cell.textField.inputView = self.countryPicker;
             cell.textField.text = self.selectedCountry;
@@ -153,8 +237,8 @@ typedef NS_ENUM(NSInteger, Gender) {
             
             cell.accessoryType = UITableViewCellAccessoryNone;
             cell.textField.placeholder = @"Gender";
-            cell.textField.userInteractionEnabled = YES;
-            cell.textField.enabled = YES;
+            cell.textField.userInteractionEnabled = self.tableView.editing;
+            cell.textField.enabled = self.tableView.editing;
             
             cell.textField.inputView = self.genderPicker;
             if (self.selectedGender != GenderNone) {
@@ -163,10 +247,7 @@ typedef NS_ENUM(NSInteger, Gender) {
             
             return cell;
         }
-            
-        case 2:
-            break;
-            
+ 
         default:
             break;
     }
@@ -175,6 +256,20 @@ typedef NS_ENUM(NSInteger, Gender) {
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForThirdSectionWithIndexPath:(NSIndexPath *)indexPath
+{
+    if (!self.descriptionCell) {
+        self.descriptionCell = [tableView dequeueReusableCellWithIdentifier:GroupDescriptionCellIdentifier forIndexPath:indexPath];
+        [self.descriptionCell.textView addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
+    }
+    
+    self.descriptionCell.textView.text = self.group.groupDescription;
+    self.descriptionCell.textView.editable = self.tableView.editing;
+    self.descriptionCell.textView.userInteractionEnabled = self.tableView.editing;
+    
+    return self.descriptionCell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForFourthSectionWithIndexPath:(NSIndexPath *)indexPath
 {
     PhotosTableViewCell *cell = (PhotosTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"PhotosCell" forIndexPath:indexPath];
     
@@ -195,6 +290,28 @@ typedef NS_ENUM(NSInteger, Gender) {
     return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+            return @"Members";
+        
+        case 1:
+            return @"About";
+
+        case 2:
+            return @"Description";
+
+        case 3:
+            return @"Photos";
+            
+        default:
+            break;
+    }
+    
+    return nil;
+}
+
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -209,6 +326,17 @@ typedef NS_ENUM(NSInteger, Gender) {
 {
     [self.friends removeObjectAtIndex:indexPath.row];
     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section == 0 && indexPath.row >= self.friends.count) {
+        [self performSegueWithIdentifier:@"showPeopleLookup" sender:self];
+    }
 }
 
 #pragma mark - Navigation
@@ -378,51 +506,75 @@ typedef NS_ENUM(NSInteger, Gender) {
 
 - (IBAction)doneBarButtonItemTapped:(UIBarButtonItem *)sender
 {
-    [SVProgressHUD show];
-    
-    PFObject *group = [PFObject objectWithClassName:@"Group"];
-    
-    NSMutableArray *groupMembers = [NSMutableArray arrayWithArray:self.friends.array];
-    [groupMembers addObject:[PFUser currentUser]];
-    group[@"users"] = groupMembers;
-    
-    group[@"country"] = self.selectedCountry;
-    group[@"gender"] = [NSNumber numberWithInt:self.selectedGender];
-
-    NSMutableArray *imageFiles = [NSMutableArray array];
-    
-    dispatch_queue_t dispatchQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_group_t dispatchGroup = dispatch_group_create();
-    
-    for (UIImage *image in self.photos) {
-        dispatch_group_enter(dispatchGroup);
+    if (self.tableView.editing) {
+        [SVProgressHUD show];
         
-        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
-        PFFile *imageFile = [PFFile fileWithName:@"groupImage.png" data:imageData];
-        [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                [imageFiles addObject:imageFile];
-            } else {
-                NSLog(@"[ERROR] Failed to save image with error: %@", error.localizedDescription);
-            }
-            dispatch_group_leave(dispatchGroup);
-        }];
-    }
-    
-    dispatch_group_notify(dispatchGroup, dispatchQueue, ^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            group[@"images"] = imageFiles;
+        [self.friends addObject:[PFUser currentUser]];
+        self.group.users = [self.friends array];
+        
+        self.group.country = self.selectedCountry;
+        self.group.gender = self.selectedGender;
+        self.group.groupDescription = self.descriptionCell.textView.text;
+        
+        NSMutableArray *imageFiles = [NSMutableArray array];
+        
+        dispatch_queue_t dispatchQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_group_t dispatchGroup = dispatch_group_create();
+        
+        for (UIImage *image in self.photos) {
+            dispatch_group_enter(dispatchGroup);
             
-            [group saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+            PFFile *imageFile = [PFFile fileWithName:@"groupImage.png" data:imageData];
+            [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
-                    [SVProgressHUD showSuccessWithStatus:@"Group created successfully!"];
+                    [imageFiles addObject:imageFile];
                 } else {
-                    [SVProgressHUD showErrorWithStatus:@"Failed to create group!"];
-                    NSLog(@"[ERROR] Failed to create group with error: %@", error.localizedDescription);
+                    NSLog(@"[ERROR] Failed to save image with error: %@", error.localizedDescription);
                 }
+                dispatch_group_leave(dispatchGroup);
             }];
+        }
+        
+        dispatch_group_notify(dispatchGroup, dispatchQueue, ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.group.images = imageFiles;
+                
+                [self.group saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (succeeded) {
+                        [SVProgressHUD showSuccessWithStatus:@"Group saved successfully!"];
+                        [App instance].myGroup = self.group;
+                        
+                        [self.tableView setEditing:NO];
+                        [self.tableView reloadData];
+                        [self.navigationItem.rightBarButtonItem setTitle:@"Edit"];
+                        
+                    } else {
+                        [SVProgressHUD showErrorWithStatus:@"Failed to save group!"];
+                        NSLog(@"[ERROR] Failed to create group with error: %@", error.localizedDescription);
+                    }
+                }];
+            });
         });
-    });
+        
+    } else {
+        [self.tableView setEditing:YES];
+        [self.tableView reloadData];
+        
+        [self.navigationItem.rightBarButtonItem setTitle:@"Save"];
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+}
+
+
+- (void)dealloc
+{
+    [self.descriptionCell.textView removeObserver:self forKeyPath:@"text"];
 }
 
 @end

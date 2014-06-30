@@ -30,6 +30,8 @@
 		CF026137195574E800AF598A /* BlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF026136195574E800AF598A /* BlurView.m */; };
 		CF02613D1955E87800AF598A /* PeopleLookupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF02613C1955E87800AF598A /* PeopleLookupTableViewController.m */; };
 		CF0261431955FA7D00AF598A /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0261421955FA7D00AF598A /* ProfileTableViewController.m */; };
+		CF0E21DB1961D2ED0097147F /* GroupDescriptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0E21DA1961D2ED0097147F /* GroupDescriptionTableViewCell.m */; };
+		CF0E21DE1961E4C40097147F /* PFUser+Equal.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0E21DD1961E4C40097147F /* PFUser+Equal.m */; };
 		CF490851195445A50099C6E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF490850195445A50099C6E6 /* Foundation.framework */; };
 		CF490853195445A50099C6E6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF490852195445A50099C6E6 /* CoreGraphics.framework */; };
 		CF490855195445A50099C6E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF490854195445A50099C6E6 /* UIKit.framework */; };
@@ -102,6 +104,10 @@
 		CF02613C1955E87800AF598A /* PeopleLookupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleLookupTableViewController.m; sourceTree = "<group>"; };
 		CF0261411955FA7D00AF598A /* ProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTableViewController.h; sourceTree = "<group>"; };
 		CF0261421955FA7D00AF598A /* ProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTableViewController.m; sourceTree = "<group>"; };
+		CF0E21D91961D2ED0097147F /* GroupDescriptionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDescriptionTableViewCell.h; sourceTree = "<group>"; };
+		CF0E21DA1961D2ED0097147F /* GroupDescriptionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDescriptionTableViewCell.m; sourceTree = "<group>"; };
+		CF0E21DC1961E4C40097147F /* PFUser+Equal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFUser+Equal.h"; sourceTree = "<group>"; };
+		CF0E21DD1961E4C40097147F /* PFUser+Equal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PFUser+Equal.m"; sourceTree = "<group>"; };
 		CF49084D195445A50099C6E6 /* Ultra meetup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ultra meetup.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF490850195445A50099C6E6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CF490852195445A50099C6E6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -265,6 +271,8 @@
 				5FDD2E9F195CA45F00297E2D /* LineupTableSectionView.h */,
 				5FDD2EA0195CA45F00297E2D /* LineupTableSectionView.m */,
 				5FDD2EA2195CA47300297E2D /* LineupTableSectionView.xib */,
+				CF0E21D91961D2ED0097147F /* GroupDescriptionTableViewCell.h */,
+				CF0E21DA1961D2ED0097147F /* GroupDescriptionTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -363,6 +371,8 @@
 				CF02613819557FC900AF598A /* AppDefines.h */,
 				CFA847D2195DADEB00A2D805 /* App.h */,
 				CFA847D3195DADEB00A2D805 /* App.m */,
+				CF0E21DC1961E4C40097147F /* PFUser+Equal.h */,
+				CF0E21DD1961E4C40097147F /* PFUser+Equal.m */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -592,12 +602,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF0E21DE1961E4C40097147F /* PFUser+Equal.m in Sources */,
 				5F106CF0195AB50D00160B4D /* ChooseGroupView.m in Sources */,
 				5F106CEF195AB50D00160B4D /* ImageLabelView.m in Sources */,
 				CF02613D1955E87800AF598A /* PeopleLookupTableViewController.m in Sources */,
 				5FDD2E9E195C9EA200297E2D /* LineupCell.m in Sources */,
 				5F106D18195AF69300160B4D /* ChatView.m in Sources */,
 				5F106D1C195AF69300160B4D /* ProfileView.m in Sources */,
+				CF0E21DB1961D2ED0097147F /* GroupDescriptionTableViewCell.m in Sources */,
 				CF49089D195448930099C6E6 /* MapViewController.m in Sources */,
 				CF4908931954468E0099C6E6 /* AppDelegate.m in Sources */,
 				5F106CE9195AB49200160B4D /* Group.m in Sources */,
@@ -733,6 +745,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -741,7 +754,7 @@
 				GCC_PREFIX_HEADER = "Ultra meetup/Ultra meetup-Prefix.pch";
 				INFOPLIST_FILE = "Ultra meetup/Ultra meetup-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C00CD67D-EFBC-432E-BAE0-CF5CC1A50E32";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -752,7 +765,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -761,7 +775,7 @@
 				GCC_PREFIX_HEADER = "Ultra meetup/Ultra meetup-Prefix.pch";
 				INFOPLIST_FILE = "Ultra meetup/Ultra meetup-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C00CD67D-EFBC-432E-BAE0-CF5CC1A50E32";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

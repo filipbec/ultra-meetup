@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Parse/Parse.h>
+#import "Group.h"
 
 @interface App : NSObject
 
 + (App*)sharedInstance;
 + (App*)instance;
 
-@property (nonatomic, retain) PFObject *myParseGroup;
+@property (nonatomic, retain) Group *myGroup;
 
 @end

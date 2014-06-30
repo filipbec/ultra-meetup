@@ -7,23 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/PFObject+Subclass.h>
 
-@interface Group : NSObject
+@interface Group : PFObject <PFSubclassing>
 
-@property (nonatomic, copy) NSString *groupID;
-@property (nonatomic, copy) NSString *country;
-@property (nonatomic, copy) NSString *groupDescription;
++ (NSString *)parseClassName;
+
+@property (nonatomic, strong) NSString *country;
 @property (nonatomic, assign) NSInteger gender;
-@property (nonatomic, strong) NSArray *members;
-@property (nonatomic, strong) NSArray *photos;
 
-@property (nonatomic, strong) PFObject *parseGroup;
+@property (nonatomic, strong) NSArray *images;
+@property (nonatomic, strong) NSArray *users;
+@property (nonatomic, strong) NSArray *dislikedBy;
+@property (nonatomic, strong) NSArray *likedBy;
 
-- (instancetype)initWithGroupID:(NSString *)groupID
-                        country: (NSString *)country
-               groupDescription: (NSString *)groupDescription
-                         gender: (NSInteger)gender
-                        members: (NSArray *)members
-                         photos: (NSArray *)photos;
+@property (nonatomic, strong) NSString *groupDescription;
 
 @end

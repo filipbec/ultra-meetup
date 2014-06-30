@@ -16,7 +16,12 @@ static const CGFloat ChoosePersonButtonHorizontalPadding = 80.f;
 static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 @interface MatchupViewController ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *bacgroundImageView;
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+
 @property (nonatomic, strong) NSMutableArray *groups;
+
 @end
 
 @implementation MatchupViewController
@@ -38,54 +43,34 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 {
     [super viewDidLoad];
     
-    [SVProgressHUD show];
-    
-    NSMutableArray *groups = [NSMutableArray array];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Group"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (PFObject *groupObject in objects) {
-            NSString *groupID = groupObject[@"objectId"];
-            NSString *country = groupObject[@"country"];
-            NSString *description = groupObject[@"description"];
-            NSNumber *gender = groupObject[@"gender"];
-            
-            NSArray *members = groupObject[@"users"];
-            NSMutableArray *extractedNames = [NSMutableArray array];
-            for (PFUser *user in members) {
-                [user fetchIfNeeded];
-                NSString *fullName = user[@"name"];
-                NSArray *fullNameComponents = [fullName componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-                [extractedNames addObject:fullNameComponents[0]];
-            }
-            
-            NSArray *images = groupObject[@"images"];
-            NSMutableArray *extractedImages = [NSMutableArray array];
-            for (PFFile *imageFile in images) {
-                NSData *imageData = [imageFile getData];
-                UIImage *image = [UIImage imageWithData:imageData];
-                [extractedImages addObject:image];
-            }
-            
-            Group *group = [[Group alloc] initWithGroupID:groupID country:country groupDescription:description gender:gender.integerValue members:extractedNames photos:extractedImages];
-            group.parseGroup = groupObject;
-            
-            [groups addObject:group];
-        }
-        self.groups = [NSMutableArray arrayWithArray:groups];
-        [SVProgressHUD dismiss];
+    if (![App instance].myGroup) {
+        self.bacgroundImageView.alpha = 0.0;
+        self.infoLabel.text = @"In order to browse other people create your own group.";
         
-        // Display the first ChoosePersonView in front. Users can swipe to indicate
-        // whether they like or dislike the person displayed.
-        self.frontCardView = [self popPersonViewWithFrame:[self frontCardViewFrame]];
-        [self.view addSubview:self.frontCardView];
+    } else {
+        [SVProgressHUD show];
         
-        // Display the second ChoosePersonView in back. This view controller uses
-        // the MDCSwipeToChooseDelegate protocol methods to update the front and
-        // back views after each user swipe.
-        self.backCardView = [self popPersonViewWithFrame:[self backCardViewFrame]];
-        [self.view insertSubview:self.backCardView belowSubview:self.frontCardView];
-    }];
+        PFQuery *query = [PFQuery queryWithClassName:@"Group"];
+        [query includeKey:@"users"];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            
+            self.groups = [objects mutableCopy];
+            [SVProgressHUD dismiss];
+            
+            // Display the first ChoosePersonView in front. Users can swipe to indicate
+            // whether they like or dislike the person displayed.
+            self.frontCardView = [self popPersonViewWithFrame:[self frontCardViewFrame]];
+            [self.view addSubview:self.frontCardView];
+            
+            // Display the second ChoosePersonView in back. This view controller uses
+            // the MDCSwipeToChooseDelegate protocol methods to update the front and
+            // back views after each user swipe.
+            self.backCardView = [self popPersonViewWithFrame:[self backCardViewFrame]];
+            [self.view insertSubview:self.backCardView belowSubview:self.frontCardView];
+        }];
+    }
+    
 }
 
 - (NSUInteger)supportedInterfaceOrientations
@@ -107,12 +92,12 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // MDCSwipeToChooseView shows "NOPE" on swipes to the left,
     // and "LIKED" on swipes to the right.
     
-//    if (direction == MDCSwipeDirectionLeft) {
-//        [self.currentGroup.parseGroup addObject:[App instance].myParseGroup forKey:@"likedBy"];
-//    } else {
-//        [self.currentGroup.parseGroup addObject:[App instance].myParseGroup forKey:@"dislikedBy"];
-//    }
-//    [self.currentGroup.parseGroup saveEventually];
+    if (direction == MDCSwipeDirectionLeft) {
+        [self.currentGroup addObject:[App instance].myGroup forKey:@"likedBy"];
+    } else {
+        [self.currentGroup addObject:[App instance].myGroup forKey:@"dislikedBy"];
+    }
+    [self.currentGroup saveEventually];
     
     // MDCSwipeToChooseView removes the view from the view hierarchy
     // after it is swiped (this behavior can be customized via the
