@@ -59,7 +59,11 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
         
         Group *g = [App instance].myGroup;
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT (%@ IN likedBy) AND NOT (%@ IN dislikedBy)", g, g];
+#ifdef DEBUG
+        PFQuery *query = [PFQuery queryWithClassName:@"Group"];
+#else
         PFQuery *query = [PFQuery queryWithClassName:@"Group" predicate:predicate];
+#endif
         
         [query includeKey:@"users"];
         
