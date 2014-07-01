@@ -303,14 +303,14 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
         if ([u.objectId isEqualToString:[PFUser currentUser].objectId]) {
             continue;
         }
-        [objectIDs addObject:u];
+        [objectIDs addObject:u.objectId];
     }
     
     for (PFUser *u in [App instance].myGroup.users) {
         if ([u.objectId isEqualToString:[PFUser currentUser].objectId]) {
             continue;
         }
-        [objectIDs addObject:u];
+        [objectIDs addObject:u.objectId];
     }
     
     PFQuery *innerQuery = [PFUser query];

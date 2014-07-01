@@ -74,10 +74,6 @@
                     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                         [self openTabBarViewController];
                     }];
-                    
-                    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-                    [currentInstallation setObject:[PFUser currentUser] forKey:@"user"];
-                    [currentInstallation saveEventually];
                 }
             }];
             

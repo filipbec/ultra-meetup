@@ -60,6 +60,9 @@ typedef NS_ENUM(NSInteger, Day) {
         
         [App instance].myGroup = (Group *)object;
     }];
+    
+    [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"user"];
+    [[PFInstallation currentInstallation] saveEventually];
 }
 
 - (void)didReceiveMemoryWarning

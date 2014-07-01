@@ -20,6 +20,7 @@
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: PURPLE_COLOR} forState:UIControlStateSelected];
     [[UITabBar appearance] setTintColor:PURPLE_COLOR];
     
+    [[UINavigationBar appearance] setBarTintColor:PURPLE_COLOR];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     

@@ -40,8 +40,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.navigationController setNavigationBarHidden:YES];
-    
     self.imageView1.layer.masksToBounds = YES;
     self.imageView2.layer.masksToBounds = YES;
     
@@ -58,6 +56,13 @@
     
     [self.imageView1 setImageWithURL:[NSURL URLWithString:myImage.url]];
     [self.imageView2 setImageWithURL:[NSURL URLWithString:otherImage.url]];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning

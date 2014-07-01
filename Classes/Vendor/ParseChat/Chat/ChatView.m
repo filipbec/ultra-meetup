@@ -77,7 +77,6 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self.navigationController setViewControllers:@[self] animated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -147,14 +146,14 @@
                 if ([u.objectId isEqualToString:[PFUser currentUser].objectId]) {
                     continue;
                 }
-                [objectIDs addObject:u];
+                [objectIDs addObject:u.objectId];
             }
             
             for (PFUser *u in chatroom.group2.users) {
                 if ([u.objectId isEqualToString:[PFUser currentUser].objectId]) {
                     continue;
                 }
-                [objectIDs addObject:u];
+                [objectIDs addObject:u.objectId];
             }
             
             PFQuery *innerQuery = [PFUser query];
