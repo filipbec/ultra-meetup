@@ -16,4 +16,5 @@
     #import <Parse/Parse.h>
     #import "AppDefines.h"
     #import <SVProgressHUD/SVProgressHUD.h>
+    #import <UIImageView+AFNetworking.h>
 #endif

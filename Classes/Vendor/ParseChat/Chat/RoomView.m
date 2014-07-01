@@ -34,6 +34,7 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+    
 	self.title = @"Matches";
 	self.tableView.separatorInset = UIEdgeInsetsZero;
     
@@ -53,6 +54,8 @@
         
         [query includeKey:@"group1"];
         [query includeKey:@"group2"];
+        [query includeKey:@"group1.users"];
+        [query includeKey:@"group2.users"];
         
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (error == nil) {
@@ -93,16 +96,11 @@
         group = room.group1;
     }
 
-    
-#warning TODO
-
+    PFFile *image = [group.images firstObject];
+    [cell.roomImageView setImageWithURL:[NSURL URLWithString:image.url]];
+    cell.roomTitleLabel.text = group.fullName;
 
 	return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 64;
 }
 
 #pragma mark - Table view delegate

@@ -55,19 +55,8 @@
     PFFile *myImage = [self.myGroup.images firstObject];
     PFFile *otherImage = [self.group.images firstObject];
     
-    [myImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        if (data) {
-            UIImage *img = [UIImage imageWithData:data];
-            self.imageView1.image = img;
-        }
-    }];
-    
-    [otherImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        if (data) {
-            UIImage *img = [UIImage imageWithData:data];
-            self.imageView2.image = img;
-        }
-    }];
+    [self.imageView1 setImageWithURL:[NSURL URLWithString:myImage.url]];
+    [self.imageView2 setImageWithURL:[NSURL URLWithString:otherImage.url]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -95,7 +84,6 @@
 - (IBAction)sendMessageButtonActionHandler:(id)sender
 {
     [self performSegueWithIdentifier:@"showChat" sender:self];
-    
 }
 
 - (IBAction)keepPlayingButtonActionHandler:(id)sender

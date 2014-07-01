@@ -23,4 +23,6 @@
 
 @property (nonatomic, strong) NSString *groupDescription;
 
+@property (nonatomic, retain, readonly) NSString *fullName;
+
 @end

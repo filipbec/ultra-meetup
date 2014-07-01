@@ -22,6 +22,10 @@
 - (void)awakeFromNib
 {
     // Initialization code
+    [super awakeFromNib];
+    
+    self.roomImageView.layer.masksToBounds = YES;
+    self.roomImageView.layer.cornerRadius = self.roomImageView.frame.size.width / 2.0;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
