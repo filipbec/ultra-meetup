@@ -11,9 +11,13 @@
 
 #import <UIImageView+AFNetworking.h>
 
-@interface GroupDetailsViewController ()
+@interface GroupDetailsViewController () <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *headerScrollView;
+@property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *groupDescriptionLabel;
+
+@property (nonatomic, strong) UIPageControl *pageControl;
 
 @end
 
@@ -34,11 +38,12 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [SVProgressHUD show];
+    [self.group refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        self.group = (Group *)object;
+        [self configureAppearance];
+        [SVProgressHUD dismiss];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,83 +54,114 @@
 
 #pragma mark - Appearance
 
-- (void)configureScrollView
+- (void)configureAppearance
 {
+    [self configureNavigationBarButtonItems];
+    [self configureScrollViewAndPageControl];
+    [self configureTableView];
+    [self configureTableViewInformation];
+}
+
+- (void)configureScrollViewAndPageControl
+{
+    for (int i = 0; i < self.group.images.count; i++) {
+        CGRect frame;
+        frame.origin.x = self.headerScrollView.frame.size.width * i;
+        frame.origin.y = 0;
+        frame.size = self.headerScrollView.frame.size;
+        
+        PFFile *imageFile = self.group.images[i];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        
+        [imageView setImageWithURL:[NSURL URLWithString:imageFile.url]];
+        [self.headerScrollView addSubview:imageView];
+    }
     
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    self.headerScrollView.contentSize = CGSizeMake(self.headerScrollView.frame.size.width * self.group.images.count, self.headerScrollView.frame.size.height);
     
-    // Configure the cell...
+    self.pageControl = [[UIPageControl alloc] init];
+    self.pageControl.numberOfPages = self.group.images.count;
+    self.pageControl.currentPage = 0;
     
-    return cell;
+    UIView *pageControlView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.pageControl.frame.size.width, self.pageControl.frame.size.height)];
+    pageControlView.frame = CGRectMake(100.0, 0.0, self.pageControl.frame.size.width, self.pageControl.frame.size.height);
+    [pageControlView addSubview:self.pageControl];
+    self.navigationItem.titleView = pageControlView;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)configureNavigationBarButtonItems
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    UIButton *likeButton =  [UIButton buttonWithType:UIButtonTypeCustom];
+    [likeButton setImage:[UIImage imageNamed:@"likeButtonWhite"] forState:UIControlStateNormal];
+    [likeButton addTarget:self action:@selector(likeBarButtonItemTapped:)forControlEvents:UIControlEventTouchUpInside];
+    [likeButton setFrame:CGRectMake(0.0, 0.0, 29, 29)];
+    UIBarButtonItem *likeBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:likeButton];
+    
+    UIButton *dislikeButton =  [UIButton buttonWithType:UIButtonTypeCustom];
+    [dislikeButton setImage:[UIImage imageNamed:@"dislikeButtonWhite"] forState:UIControlStateNormal];
+    [dislikeButton addTarget:self action:@selector(dislikeBarButtonItemTapped:)forControlEvents:UIControlEventTouchUpInside];
+    [dislikeButton setFrame:CGRectMake(0.0, 0.0, 29, 29)];
+    UIBarButtonItem *dislikeBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:dislikeButton];
+    
+    self.navigationItem.rightBarButtonItems = @[likeBarButtonItem, dislikeBarButtonItem];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)configureTableView
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    self.tableView.tableFooterView = [UIView new];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+- (void)configureTableViewInformation
 {
+    self.groupNameLabel.text = self.group.fullName;
+    self.groupNameLabel.textColor = PURPLE_COLOR;
+    
+    self.groupDescriptionLabel.text = self.group.groupDescription;
+//    [self.groupDescriptionLabel sizeToFit];
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - Table view delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+    // If cell is group description label which can be multiline
+    if (indexPath.row == 1) {
+#warning BETTER SOLUTION REQUIRED, JA, FILIP BEC, SAM OVO PISAO, I NISAM ZNAO BOLJE
+        CGSize size = [self.group.groupDescription sizeWithFont:[UIFont fontWithName:@"Helvetica" size:17] constrainedToSize:CGSizeMake(280, 999) lineBreakMode:NSLineBreakByWordWrapping];
+        NSLog(@"%f",size.height);
+        return size.height + 20;
+    }
+    
+    return 44.0;
 }
-*/
 
-/*
-#pragma mark - Navigation
+#pragma mark - Like/Dislike
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)likeBarButtonItemTapped:(UIBarButtonItem *)barButtonItem
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([self.delegate respondsToSelector:@selector(groupDetailsViewControllerDidLikeGroup)]) {
+        [self.delegate groupDetailsViewControllerDidLikeGroup];
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
-*/
+
+- (void)dislikeBarButtonItemTapped:(UIBarButtonItem *)barButtonItem
+{
+    if ([self.delegate respondsToSelector:@selector(groupDetailsViewControllerDidDislikeGroup)]) {
+        [self.delegate groupDetailsViewControllerDidDislikeGroup];
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Scroll view delegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)sender {
+    CGFloat pageWidth = self.headerScrollView.frame.size.width;
+    int page = floor((self.headerScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    self.pageControl.currentPage = page;
+}
 
 @end
