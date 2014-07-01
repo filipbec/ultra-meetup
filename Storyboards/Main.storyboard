@@ -953,7 +953,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="4md-U1-W7w">
-                                                    <rect key="frame" x="20" y="11" width="280" height="21"/>
+                                                    <rect key="frame" x="20" y="11" width="280" height="0.0"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
@@ -961,7 +961,6 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="4md-U1-W7w" secondAttribute="trailing" constant="20" id="Bkh-MH-JTl"/>
-                                                <constraint firstAttribute="bottom" secondItem="4md-U1-W7w" secondAttribute="bottom" constant="11" id="SJW-82-36p"/>
                                                 <constraint firstItem="4md-U1-W7w" firstAttribute="leading" secondItem="bBa-kt-MtV" secondAttribute="leading" constant="20" id="WFS-1b-Fox"/>
                                                 <constraint firstItem="4md-U1-W7w" firstAttribute="top" secondItem="bBa-kt-MtV" secondAttribute="top" constant="11" id="cto-Nc-DvW"/>
                                             </constraints>

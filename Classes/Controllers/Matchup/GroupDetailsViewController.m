@@ -19,6 +19,8 @@
 
 @property (nonatomic, strong) UIPageControl *pageControl;
 
+@property (nonatomic, assign) float descriptionCellHeight;
+
 @end
 
 @implementation GroupDetailsViewController
@@ -42,6 +44,8 @@
     [self.group refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         self.group = (Group *)object;
         [self configureAppearance];
+        [self.tableView reloadData];
+        
         [SVProgressHUD dismiss];
     }];
 }
@@ -118,22 +122,21 @@
     self.groupNameLabel.textColor = PURPLE_COLOR;
     
     self.groupDescriptionLabel.text = self.group.groupDescription;
-//    [self.groupDescriptionLabel sizeToFit];
 }
 
 #pragma mark - Table view delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // If cell is group description label which can be multiline
-    if (indexPath.row == 1) {
-#warning BETTER SOLUTION REQUIRED, JA, FILIP BEC, SAM OVO PISAO, I NISAM ZNAO BOLJE
-        CGSize size = [self.group.groupDescription sizeWithFont:[UIFont fontWithName:@"Helvetica" size:17] constrainedToSize:CGSizeMake(280, 999) lineBreakMode:NSLineBreakByWordWrapping];
-        NSLog(@"%f",size.height);
-        return size.height + 20;
+    if (indexPath.row == 1)
+    {
+        [self.groupDescriptionLabel sizeToFit];
+        return self.groupDescriptionLabel.bounds.size.height + 22;
     }
-    
-    return 44.0;
+    else
+    {
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
 }
 
 #pragma mark - Like/Dislike
