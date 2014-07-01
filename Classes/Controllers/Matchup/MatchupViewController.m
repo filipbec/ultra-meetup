@@ -64,7 +64,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 #else
         PFQuery *query = [PFQuery queryWithClassName:@"Group" predicate:predicate];
 #endif
-        
         [query includeKey:@"users"];
         
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {

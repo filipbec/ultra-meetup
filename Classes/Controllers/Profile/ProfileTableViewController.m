@@ -70,6 +70,7 @@ typedef NS_ENUM(NSInteger, Gender) {
     
     if (self.group) {
         self.tableView.editing = NO;
+        [self.tableView reloadData];
         
         self.friends = [[NSMutableOrderedSet alloc] initWithArray:self.group.users];
         self.selectedCountry = self.group.country;
@@ -111,6 +112,7 @@ typedef NS_ENUM(NSInteger, Gender) {
         
     } else {
         self.tableView.editing = YES;
+        [self.tableView reloadData];
         
         self.group = [Group object];
         
