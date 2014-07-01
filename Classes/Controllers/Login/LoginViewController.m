@@ -66,9 +66,11 @@
                     // result is a dictionary with the user's Facebook data
                     NSDictionary *userData = (NSDictionary *)result;
                     NSString *name = userData[@"name"];
+                    NSString *firstName = user[@"firstName"];
                     
                     PFUser *user = [PFUser currentUser];
                     [user setObject:name forKey:@"name"];
+                    [user setObject:firstName forKey:@"firstName"];
                     [user saveEventually];
                     
                     [self openTabBarViewController];

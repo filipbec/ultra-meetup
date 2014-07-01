@@ -10,7 +10,7 @@
 
 @interface ChatRoomTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIView *roomImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *roomImageView;
 @property (weak, nonatomic) IBOutlet UILabel *roomTitleLabel;
 
 @end

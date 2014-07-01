@@ -699,28 +699,28 @@
         <scene sceneID="LXW-b2-yZr">
             <objects>
                 <tableViewController id="MmT-ik-wrc" customClass="RoomView" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="64" sectionHeaderHeight="10" sectionFooterHeight="10" id="vNp-HW-pMm">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="74" sectionHeaderHeight="10" sectionFooterHeight="10" id="vNp-HW-pMm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="lmD-uo-245" customClass="ChatRoomTableViewCell">
-                                <rect key="frame" x="0.0" y="119" width="320" height="64"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChatRoomTableViewCell" id="lmD-uo-245" customClass="ChatRoomTableViewCell">
+                                <rect key="frame" x="0.0" y="119" width="320" height="74"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lmD-uo-245" id="OLJ-SN-eh6">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="73"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4AK-6H-e6E">
-                                            <rect key="frame" x="15" y="7" width="50" height="50"/>
+                                            <rect key="frame" x="15" y="12" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="VX2-Zs-ymw"/>
                                                 <constraint firstAttribute="width" constant="50" id="g9A-sx-wx5"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="230" translatesAutoresizingMaskIntoConstraints="NO" id="aDW-Rd-iDZ">
-                                            <rect key="frame" x="75" y="7" width="230" height="50"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="207" translatesAutoresizingMaskIntoConstraints="NO" id="aDW-Rd-iDZ">
+                                            <rect key="frame" x="75" y="12" width="207" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="Hg1-Lj-bM3"/>
@@ -732,14 +732,14 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="centerY" secondItem="aDW-Rd-iDZ" secondAttribute="centerY" id="590-XL-7BJ"/>
+                                        <constraint firstAttribute="trailing" secondItem="aDW-Rd-iDZ" secondAttribute="trailing" constant="5" id="Quf-ms-DM8"/>
                                         <constraint firstAttribute="centerY" secondItem="4AK-6H-e6E" secondAttribute="centerY" id="bmO-Q7-7h0"/>
                                         <constraint firstItem="4AK-6H-e6E" firstAttribute="leading" secondItem="OLJ-SN-eh6" secondAttribute="leading" constant="15" id="eEe-Xl-E8W"/>
-                                        <constraint firstAttribute="trailing" secondItem="aDW-Rd-iDZ" secondAttribute="trailing" constant="15" id="uUL-b2-bKJ"/>
                                         <constraint firstItem="aDW-Rd-iDZ" firstAttribute="leading" secondItem="4AK-6H-e6E" secondAttribute="trailing" constant="10" id="yfd-cN-Cnn"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="roomImageView" destination="OLJ-SN-eh6" id="egK-de-c2e"/>
+                                    <outlet property="roomImageView" destination="4AK-6H-e6E" id="F1a-PP-PYR"/>
                                     <outlet property="roomTitleLabel" destination="aDW-Rd-iDZ" id="hhj-Vo-hWb"/>
                                 </connections>
                             </tableViewCell>

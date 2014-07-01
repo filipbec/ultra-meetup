@@ -18,6 +18,8 @@
 @dynamic likedBy;
 @dynamic groupDescription;
 
+@dynamic fullName;
+
 + (NSString *)parseClassName
 {
     return @"Group";
@@ -40,5 +42,26 @@
     return [self.objectId hash];
 }
 
+- (NSString *)fullName
+{
+    NSString *name = @"";
+    NSInteger lastIndex = [self.users count] - 1;
+    NSInteger index = 0;
+    
+    for (PFUser *user in self.users) {
+        if (index == 0) {
+            name = [user objectForKey:@"firstName"];
+        } else if (index == lastIndex) {
+            name = [name stringByAppendingFormat:@" and %@", [user objectForKey:@"firstName"]];
+        } else {
+            name = [name stringByAppendingFormat:@", %@", [user objectForKey:@"firstName"]];
+        }
+        
+        index++;
+    }
+    name = [name stringByAppendingFormat:@" from %@", self.country];
+    
+    return name;
+}
 
 @end
