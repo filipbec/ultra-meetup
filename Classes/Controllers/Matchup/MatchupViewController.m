@@ -19,7 +19,7 @@
 static const CGFloat ChoosePersonButtonHorizontalPadding = 80.f;
 static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
-@interface MatchupViewController ()
+@interface MatchupViewController () <GroupDetailsViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *bacgroundImageView;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
@@ -64,6 +64,16 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     } else {
         [SVProgressHUD show];
         
+        if (self.frontCardView) {
+            [self.frontCardView removeFromSuperview];
+            self.frontCardView = nil;
+        }
+        
+        if (self.backCardView) {
+            [self.backCardView removeFromSuperview];
+            self.backCardView = nil;
+        }
+        
         Group *g = [App instance].myGroup;
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT (%@ IN likedBy) AND NOT (%@ IN dislikedBy) AND (%@ != objectId)", g, g, g.objectId];
         PFQuery *query = [PFQuery queryWithClassName:@"Group" predicate:predicate];
@@ -79,12 +89,14 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                 self.bacgroundImageView.alpha = 0.0;
             }
 
+            UITapGestureRecognizer *frontCardViewTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openGroupDetailsScreen)];
             self.frontCardView = [self popPersonViewWithFrame:[self frontCardViewFrame]];
-            UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openGroupDetailsScreen)];
-            [self.frontCardView addGestureRecognizer:tapGestureRecognizer];
+            [self.frontCardView addGestureRecognizer:frontCardViewTapGestureRecognizer];
             [self.view addSubview:self.frontCardView];
             
+            UITapGestureRecognizer *backCardViewTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openGroupDetailsScreen)];
             self.backCardView = [self popPersonViewWithFrame:[self backCardViewFrame]];
+            [self.backCardView addGestureRecognizer:backCardViewTapGestureRecognizer];
             [self.view insertSubview:self.backCardView belowSubview:self.frontCardView];
         }];
     }
@@ -292,6 +304,18 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (void)openGroupDetailsScreen
 {
     [self performSegueWithIdentifier:@"GroupDetails" sender:self];
+}
+
+#pragma mark - Group Details View Controller Delegate
+
+- (void)groupDetailsViewControllerDidLikeGroup
+{
+    [self likeFrontCardView];
+}
+
+- (void)groupDetailsViewControllerDidDislikeGroup
+{
+    [self nopeFrontCardView];
 }
 
 #pragma mark - Navigation
