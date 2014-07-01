@@ -14,6 +14,7 @@
 
 @interface ChatView : JSQMessagesViewController
 
+@property (nonatomic, assign) BOOL fromPopup;
 
 - (id)initWith:(ChatRoom *)chatroom_;
 

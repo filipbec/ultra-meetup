@@ -43,7 +43,7 @@
 
 - (IBAction)loginButtonActionHandler:(id)sender
 {
-    NSArray *permissionsArray = @[@"user_about_me", @"user_friends"];
+    NSArray *permissionsArray = @[@"user_about_me"];
     
     // Login PFUser using Facebook
     [self.activityIndicator startAnimating];
@@ -66,14 +66,18 @@
                     // result is a dictionary with the user's Facebook data
                     NSDictionary *userData = (NSDictionary *)result;
                     NSString *name = userData[@"name"];
-                    NSString *firstName = user[@"firstName"];
+                    NSString *firstName = userData[@"first_name"];
                     
                     PFUser *user = [PFUser currentUser];
                     [user setObject:name forKey:@"name"];
                     [user setObject:firstName forKey:@"firstName"];
-                    [user saveEventually];
+                    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        [self openTabBarViewController];
+                    }];
                     
-                    [self openTabBarViewController];
+                    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+                    [currentInstallation setObject:[PFUser currentUser] forKey:@"user"];
+                    [currentInstallation saveEventually];
                 }
             }];
             

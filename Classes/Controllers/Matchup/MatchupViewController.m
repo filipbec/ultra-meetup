@@ -288,10 +288,41 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
         if (succeeded) {
             self.matchRoom = room;
             [self openMatchScreen];
+            [self sendPushToGroup:self.matchGroup];
+            
         } else {
             [room saveEventually];
         }
     }];
+}
+
+- (void)sendPushToGroup:(Group *)group
+{
+    NSMutableArray *objectIDs = [NSMutableArray array];
+    for (PFUser *u in group.users) {
+        if ([u.objectId isEqualToString:[PFUser currentUser].objectId]) {
+            continue;
+        }
+        [objectIDs addObject:u];
+    }
+    
+    for (PFUser *u in [App instance].myGroup.users) {
+        if ([u.objectId isEqualToString:[PFUser currentUser].objectId]) {
+            continue;
+        }
+        [objectIDs addObject:u];
+    }
+    
+    PFQuery *innerQuery = [PFUser query];
+    [innerQuery whereKey:@"objectId" containedIn:objectIDs];
+    
+    PFQuery *query = [PFInstallation query];
+    [query whereKey:@"user" matchesQuery:innerQuery];
+    
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:query];
+    [push setMessage:@"You have new match! Check your matches."];
+    [push sendPushInBackground];
 }
 
 - (void)openMatchScreen

@@ -528,6 +528,9 @@
 					CF49084C195445A50099C6E6 = {
 						DevelopmentTeam = 5F5M64F878;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.iOS = {
 								enabled = 1;
 							};

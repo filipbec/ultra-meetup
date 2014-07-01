@@ -133,9 +133,37 @@
 	[object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
 		if (error == nil) {
 			[JSQSystemSoundPlayer jsq_playMessageSentSound];
+            
+            NSMutableArray *objectIDs = [NSMutableArray array];
+            for (PFUser *u in chatroom.group1.users) {
+                if ([u.objectId isEqualToString:[PFUser currentUser].objectId]) {
+                    continue;
+                }
+                [objectIDs addObject:u];
+            }
+            
+            for (PFUser *u in chatroom.group2.users) {
+                if ([u.objectId isEqualToString:[PFUser currentUser].objectId]) {
+                    continue;
+                }
+                [objectIDs addObject:u];
+            }
+            
+            PFQuery *innerQuery = [PFUser query];
+            [innerQuery whereKey:@"objectId" containedIn:objectIDs];
+            
+            PFQuery *query = [PFInstallation query];
+            [query whereKey:@"user" matchesQuery:innerQuery];
+            
+            PFPush *push = [[PFPush alloc] init];
+            [push setQuery:query];
+            [push setMessage:[NSString stringWithFormat:@"New message from %@", [[PFUser currentUser] objectForKey:@"name"]]];
+            [push sendPushInBackground];
+            
 			[self loadMessages];
-		}
-		else [SVProgressHUD showErrorWithStatus:@"Network error"];;
+		} else {
+            [SVProgressHUD showErrorWithStatus:@"Network error"];
+        }
 	}];
 	[self finishSendingMessage];
 }

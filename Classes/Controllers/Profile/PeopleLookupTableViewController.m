@@ -187,8 +187,7 @@
 
 - (void)showInviteFriendsMessage
 {
-#warning TODO
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ultra meetup" message:@"PORUKA!!!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Invite friends", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ultra meetup" message:@"Invite your friends?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Invite friends", nil];
     alert.tag = kInviteFacebookFriendsAlert;
     [alert show];
 }
@@ -196,8 +195,7 @@
 - (void)inviteFriends
 {
     if ([[FBSession activeSession] isOpen]) {
-#warning MESSAGE
-        [FBWebDialogs presentRequestsDialogModallyWithSession:[PFFacebookUtils session] message:@"Instaliraj aplikaciju Ultra meetup!" title:@"BOK!" parameters:nil handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+        [FBWebDialogs presentRequestsDialogModallyWithSession:[PFFacebookUtils session] message:@"Hi! Please try Ultra meetup app!" title:@"Ultra meetup" parameters:nil handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
              if (error) {
                  NSLog(@"ERROR: %@", error);
              }
