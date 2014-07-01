@@ -8,9 +8,12 @@
 
 #import "MatchupViewController.h"
 #import "Group.h"
+#import "ChatRoom.h"
+#import "App.h"
+#import "MatchViewController.h"
+
 #import <MDCSwipeToChoose/MDCSwipeToChoose.h>
 #import <SVProgressHUD.h>
-#import "App.h"
 
 static const CGFloat ChoosePersonButtonHorizontalPadding = 80.f;
 static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
@@ -21,6 +24,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 
 @property (nonatomic, strong) NSMutableArray *groups;
+@property (nonatomic, strong) Group *matchGroup;
 
 @end
 
@@ -103,13 +107,17 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     if (direction == MDCSwipeDirectionLeft) {
         [self.currentGroup addObject:[App instance].myGroup forKey:@"dislikedBy"];
     } else {
-        [self.currentGroup addObject:[App instance].myGroup forKey:@"likedBy"];
+        Group *otherGroup = self.currentGroup;
+        [otherGroup addObject:[App instance].myGroup forKey:@"likedBy"];
         
-        Group *myGroup = [App instance].myGroup;
-        if ([myGroup.likedBy containsObject:self.currentGroup]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"MATCH" message:@"OLE!!!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
+        [[App instance].myGroup refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            [App instance].myGroup = (Group *)object;
+            
+            Group *myGroup = [App instance].myGroup;
+            if ([myGroup.likedBy containsObject:otherGroup]) {
+                [self createChatRoomWithGroup:otherGroup];
+            }
+        }];
     }
     [self.currentGroup saveEventually];
     
@@ -249,6 +257,34 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (void)likeFrontCardView {
     [self.frontCardView mdc_swipe:MDCSwipeDirectionRight];
 
+}
+
+#pragma mark - Match
+- (void)createChatRoomWithGroup:(Group *)group
+{
+    ChatRoom *room = [ChatRoom object];
+    room.group1 = [App instance].myGroup;
+    room.group2 = group;
+    
+    [room saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [self openMatchScreenWithGroup:group];
+    }];
+    
+    [self performSegueWithIdentifier:@"match" sender:self];
+}
+
+- (void)openMatchScreenWithGroup:(Group *)group
+{
+    self.matchGroup = group;
+    [self performSegueWithIdentifier:@"match" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"match"]) {
+        MatchViewController *vc = (MatchViewController *)[segue.destinationViewController topViewController];
+        vc.group = self.matchGroup;
+    }
 }
 
 @end

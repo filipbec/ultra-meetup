@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Group.h"
+#import "ChatRoom.h"
 
 @implementation AppDelegate
 
@@ -23,6 +24,8 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     [Group registerSubclass];
+    [ChatRoom registerSubclass];
+    
     [Parse setApplicationId:@"n0353KQxiSUEzrTrRQT08s5zdQqe5PnxH5dbUFzk" clientKey:@"IGb2VtBJqmUrIOhp4WB9K8iBltMtYBJPkisrR3pC"];
     [PFFacebookUtils initializeFacebook];
     

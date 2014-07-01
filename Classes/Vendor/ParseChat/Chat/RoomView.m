@@ -17,128 +17,103 @@
 #import "RoomView.h"
 #import "ChatView.h"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+#import "App.h"
+#import "ChatRoom.h"
+
+#import "ChatRoomTableViewCell.h"
+
 @interface RoomView()
-{
-	NSMutableArray *items;
-}
+
+@property (nonatomic, strong) NSArray *rooms;
+
 @end
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 @implementation RoomView
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidLoad];
-	self.title = @"Chat";
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStyleBordered
-																						target:self action:@selector(actionNew)];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	self.title = @"Matches";
 	self.tableView.separatorInset = UIEdgeInsetsZero;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	items = [[NSMutableArray alloc] init];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+    
 	[self refreshTable];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)actionNew
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Please enter a name for your group" delegate:self
-										  cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
-	alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-	[alert show];
-}
-
-#pragma mark - UIAlertViewDelegate
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	if (buttonIndex != alertView.cancelButtonIndex)
-	{
-		UITextField *textField = [alertView textFieldAtIndex:0];
-		if ([textField.text isEqualToString:@""] == NO)
-		{
-			PFObject *object = [PFObject objectWithClassName:PF_CHATROOMS_CLASS_NAME];
-			object[PF_CHATROOMS_ROOM] = textField.text;
-			[object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-			{
-				if (error == nil)
-				{
-					[self refreshTable];
-				}
-				else [SVProgressHUD showErrorWithStatus:@"Network error."];
-			}];
-		}
-	}
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)refreshTable
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	[SVProgressHUD show];
-	PFQuery *query = [PFQuery queryWithClassName:PF_CHATROOMS_CLASS_NAME];
-	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-	{
-		if (error == nil)
-		{
-			[items removeAllObjects];
-			for (PFObject *object in objects)
-			{
-				NSString *room = object[PF_CHATROOMS_ROOM];
-				[items addObject:room];
-			}
-			[SVProgressHUD dismiss];
-			[self.tableView reloadData];
-		}
-		else [SVProgressHUD showErrorWithStatus:@"Network error."];
-	}];
+    Group *group = [App instance].myGroup;
+    
+    if (group) {
+        [SVProgressHUD show];
+        
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"group1 == %@ OR group2 == %@", group, group];
+        PFQuery *query = [PFQuery queryWithClassName:[ChatRoom parseClassName] predicate:predicate];
+        
+        [query includeKey:@"group1"];
+        [query includeKey:@"group2"];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (error == nil) {
+                self.rooms = objects;
+                
+                [SVProgressHUD dismiss];
+                [self.tableView reloadData];
+                
+            } else {
+                [SVProgressHUD showErrorWithStatus:@"Network error."];
+            }
+        }];
+    }
 }
 
 #pragma mark - Table view data source
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	return 1;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	return [items count];
+	return [self.rooms count];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-	if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+	ChatRoomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChatRoomTableViewCell"];
+    
+    ChatRoom *room = [self.rooms objectAtIndex:indexPath.row];
+    Group *group = nil;
+    
+    if ([room.group1 isEqual:[App instance].myGroup]) {
+        group = room.group2;
+    } else {
+        group = room.group1;
+    }
 
-	cell.textLabel.text = [items objectAtIndex:indexPath.row];
+    
+#warning TODO
+
 
 	return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 64;
+}
+
 #pragma mark - Table view delegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	NSString *chatroom = [items objectAtIndex:indexPath.row];
+    
+	ChatRoom *chatroom = [self.rooms objectAtIndex:indexPath.row];
 	ChatView *chatView = [[ChatView alloc] initWith:chatroom];
+    
 	[self.navigationController pushViewController:chatView animated:YES];
 }
 

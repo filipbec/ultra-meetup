@@ -46,6 +46,9 @@
 		CF4908951954468E0099C6E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF4908921954468E0099C6E6 /* Main.storyboard */; };
 		CF49089D195448930099C6E6 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF49089C195448930099C6E6 /* MapViewController.m */; };
 		CF49089F195448CE0099C6E6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF49089E195448CE0099C6E6 /* MapKit.framework */; };
+		CFA0F2431963057100A727FD /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA0F2421963057100A727FD /* MatchViewController.m */; };
+		CFA0F2461963159E00A727FD /* ChatRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA0F2451963159E00A727FD /* ChatRoom.m */; };
+		CFA0F24919631AF700A727FD /* ChatRoomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA0F24819631AF700A727FD /* ChatRoomTableViewCell.m */; };
 		CFA847C3195B221800A2D805 /* CountryList.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA847C2195B221800A2D805 /* CountryList.m */; };
 		CFA847C6195B26E100A2D805 /* SimpleInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA847C5195B26E100A2D805 /* SimpleInputTableViewCell.m */; };
 		CFA847CF195B391000A2D805 /* PhotosTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA847CE195B391000A2D805 /* PhotosTableViewCell.m */; };
@@ -127,6 +130,12 @@
 		CF49089B195448930099C6E6 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		CF49089C195448930099C6E6 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		CF49089E195448CE0099C6E6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CFA0F2411963057100A727FD /* MatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
+		CFA0F2421963057100A727FD /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
+		CFA0F2441963159E00A727FD /* ChatRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoom.h; sourceTree = "<group>"; };
+		CFA0F2451963159E00A727FD /* ChatRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoom.m; sourceTree = "<group>"; };
+		CFA0F24719631AF700A727FD /* ChatRoomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomTableViewCell.h; sourceTree = "<group>"; };
+		CFA0F24819631AF700A727FD /* ChatRoomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomTableViewCell.m; sourceTree = "<group>"; };
 		CFA847C1195B221800A2D805 /* CountryList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryList.h; sourceTree = "<group>"; };
 		CFA847C2195B221800A2D805 /* CountryList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryList.m; sourceTree = "<group>"; };
 		CFA847C4195B26E100A2D805 /* SimpleInputTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleInputTableViewCell.h; sourceTree = "<group>"; };
@@ -174,6 +183,8 @@
 				5F106CEA195AB4F900160B4D /* Views */,
 				5F106CE4195AB45800160B4D /* MatchupViewController.h */,
 				5F106CE5195AB45800160B4D /* MatchupViewController.m */,
+				CFA0F2411963057100A727FD /* MatchViewController.h */,
+				CFA0F2421963057100A727FD /* MatchViewController.m */,
 			);
 			path = Matchup;
 			sourceTree = "<group>";
@@ -399,6 +410,8 @@
 				5F106CE8195AB49200160B4D /* Group.m */,
 				CFA847C1195B221800A2D805 /* CountryList.h */,
 				CFA847C2195B221800A2D805 /* CountryList.m */,
+				CFA0F2441963159E00A727FD /* ChatRoom.h */,
+				CFA0F2451963159E00A727FD /* ChatRoom.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -414,6 +427,8 @@
 		CF490896195448450099C6E6 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				CFA0F24719631AF700A727FD /* ChatRoomTableViewCell.h */,
+				CFA0F24819631AF700A727FD /* ChatRoomTableViewCell.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -604,12 +619,14 @@
 			files = (
 				CF0E21DE1961E4C40097147F /* PFUser+Equal.m in Sources */,
 				5F106CF0195AB50D00160B4D /* ChooseGroupView.m in Sources */,
+				CFA0F24919631AF700A727FD /* ChatRoomTableViewCell.m in Sources */,
 				5F106CEF195AB50D00160B4D /* ImageLabelView.m in Sources */,
 				CF02613D1955E87800AF598A /* PeopleLookupTableViewController.m in Sources */,
 				5FDD2E9E195C9EA200297E2D /* LineupCell.m in Sources */,
 				5F106D18195AF69300160B4D /* ChatView.m in Sources */,
 				5F106D1C195AF69300160B4D /* ProfileView.m in Sources */,
 				CF0E21DB1961D2ED0097147F /* GroupDescriptionTableViewCell.m in Sources */,
+				CFA0F2431963057100A727FD /* MatchViewController.m in Sources */,
 				CF49089D195448930099C6E6 /* MapViewController.m in Sources */,
 				CF4908931954468E0099C6E6 /* AppDelegate.m in Sources */,
 				5F106CE9195AB49200160B4D /* Group.m in Sources */,
@@ -620,6 +637,7 @@
 				CFA847D4195DADEB00A2D805 /* App.m in Sources */,
 				CF49085D195445A50099C6E6 /* main.m in Sources */,
 				CF02611C1955739B00AF598A /* LineupViewController.m in Sources */,
+				CFA0F2461963159E00A727FD /* ChatRoom.m in Sources */,
 				5F106D22195AF69300160B4D /* utilities.m in Sources */,
 				5FDD2EA1195CA45F00297E2D /* LineupTableSectionView.m in Sources */,
 				CF026117195483E800AF598A /* MapLocation.m in Sources */,

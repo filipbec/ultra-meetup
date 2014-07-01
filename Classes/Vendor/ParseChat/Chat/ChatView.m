@@ -16,13 +16,12 @@
 
 #import "ChatView.h"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface ChatView()
 {
 	NSTimer *timer;
 	BOOL isLoading;
 	
-	NSString *chatroom;
+	ChatRoom *chatroom;
 	
 	NSMutableArray *users;
 	NSMutableArray *messages;
@@ -32,22 +31,18 @@
 	UIImageView *incomingBubbleImageView;
 }
 @end
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 
 @implementation ChatView
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (id)initWith:(NSString *)chatroom_
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+- (id)initWith:(ChatRoom *)chatroom_
 {
 	self = [super init];
 	chatroom = chatroom_;
 	return self;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidLoad];
 	self.title = @"Chat";
@@ -66,26 +61,20 @@
 	timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(loadMessages) userInfo:nil repeats:YES];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidAppear:(BOOL)animated
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidAppear:animated];
 
 	self.collectionView.collectionViewLayout.springinessEnabled = YES;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewWillDisappear:(BOOL)animated
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewWillDisappear:animated];
 	[timer invalidate];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)loadMessages
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	if (isLoading == NO)
 	{
@@ -119,9 +108,7 @@
 
 #pragma mark - JSQMessagesViewController method overrides
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)didPressSendButton:(UIButton *)button withMessageText:(NSString *)text sender:(NSString *)sender date:(NSDate *)date
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	PFObject *object = [PFObject objectWithClassName:PF_CHAT_CLASS_NAME];
 	object[PF_CHAT_ROOM] = chatroom;
@@ -139,25 +126,21 @@
 	[self finishSendingMessage];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)didPressAccessoryButton:(UIButton *)sender
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	NSLog(@"didPressAccessoryButton");
 }
 
 #pragma mark - JSQMessages CollectionView DataSource
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	return [messages objectAtIndex:indexPath.item];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (UIImageView *)collectionView:(JSQMessagesCollectionView *)collectionView bubbleImageViewForItemAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	JSQMessage *message = [messages objectAtIndex:indexPath.item];
 	if ([[message sender] isEqualToString:self.sender])
@@ -167,9 +150,8 @@
 	else return [[UIImageView alloc] initWithImage:incomingBubbleImageView.image highlightedImage:incomingBubbleImageView.highlightedImage];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (UIImageView *)collectionView:(JSQMessagesCollectionView *)collectionView avatarImageViewForItemAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	PFUser *user = [users objectAtIndex:indexPath.item];
 
@@ -194,9 +176,8 @@
 	return imageView;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	if (indexPath.item % 3 == 0)
 	{
@@ -206,9 +187,7 @@
 	return nil;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForMessageBubbleTopLabelAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	JSQMessage *message = [messages objectAtIndex:indexPath.item];
 	if ([message.sender isEqualToString:self.sender])
@@ -229,25 +208,21 @@
 	return [[NSAttributedString alloc] initWithString:user[PF_USER_USERNAME]];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	return nil;
 }
 
+
 #pragma mark - UICollectionView DataSource
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	return [messages count];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (UICollectionViewCell *)collectionView:(JSQMessagesCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
 	
@@ -269,10 +244,8 @@
 
 #pragma mark - JSQMessages collection view flow layout delegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
 				   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	if (indexPath.item % 3 == 0)
 	{
@@ -281,10 +254,9 @@
 	return 0.0f;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
 				   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForMessageBubbleTopLabelAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	JSQMessage *message = [messages objectAtIndex:indexPath.item];
 	if ([[message sender] isEqualToString:self.sender])
@@ -303,18 +275,16 @@
 	return kJSQMessagesCollectionViewCellLabelHeightDefault;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
 				   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	return 0.0f;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView
 				header:(JSQMessagesLoadEarlierHeaderView *)headerView didTapLoadEarlierMessagesButton:(UIButton *)sender
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	NSLog(@"didTapLoadEarlierMessagesButton");
 }
