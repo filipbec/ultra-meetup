@@ -50,7 +50,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidLoad];
-	self.title = @"ParseChat";
+	self.title = @"Chat";
 	
 	users = [[NSMutableArray alloc] init];
 	messages = [[NSMutableArray alloc] init];
