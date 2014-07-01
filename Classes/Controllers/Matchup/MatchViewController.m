@@ -9,6 +9,7 @@
 #import "MatchViewController.h"
 #import "App.h"
 
+
 @interface MatchViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -83,7 +84,9 @@
 
 - (IBAction)sendMessageButtonActionHandler:(id)sender
 {
-    [self performSegueWithIdentifier:@"showChat" sender:self];
+	ChatView *chatView = [[ChatView alloc] initWith:self.chatroom];
+    chatView.fromPopup = YES;
+	[self.navigationController pushViewController:chatView animated:YES];
 }
 
 - (IBAction)keepPlayingButtonActionHandler:(id)sender

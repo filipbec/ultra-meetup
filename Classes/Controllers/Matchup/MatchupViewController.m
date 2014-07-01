@@ -25,7 +25,9 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 
 @property (nonatomic, strong) NSMutableArray *groups;
+
 @property (nonatomic, strong) Group *matchGroup;
+@property (nonatomic, strong) ChatRoom *matchRoom;
 
 @end
 
@@ -269,16 +271,19 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     room.group1 = [App instance].myGroup;
     room.group2 = group;
     
+    self.matchGroup = group;
     [room saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [self openMatchScreenWithGroup:group];
+        if (succeeded) {
+            self.matchRoom = room;
+            [self openMatchScreen];
+        } else {
+            [room saveEventually];
+        }
     }];
-    
-    [self performSegueWithIdentifier:@"match" sender:self];
 }
 
-- (void)openMatchScreenWithGroup:(Group *)group
+- (void)openMatchScreen
 {
-    self.matchGroup = group;
     [self performSegueWithIdentifier:@"match" sender:self];
 }
 
@@ -296,6 +301,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     if ([segue.identifier isEqualToString:@"match"]) {
         MatchViewController *vc = (MatchViewController *)[segue.destinationViewController topViewController];
         vc.group = self.matchGroup;
+        vc.chatroom = self.matchRoom;
+        
     } else if ([segue.identifier isEqualToString:@"GroupDetails"]) {
         GroupDetailsViewController *groupDetailsViewController = segue.destinationViewController;
         groupDetailsViewController.group = self.currentGroup;

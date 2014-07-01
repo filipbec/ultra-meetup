@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Group.h"
+#import "ChatRoom.h"
+#import "ChatView.h"
 
 @interface MatchViewController : UIViewController
 
 @property (nonatomic, retain) Group *group;
+@property (nonatomic, retain) ChatRoom *chatroom;
 
 @end
