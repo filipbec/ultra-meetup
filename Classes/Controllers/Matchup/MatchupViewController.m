@@ -68,7 +68,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
             self.groups = [objects mutableCopy];
             
             if (self.groups.count <= 0) {
-                self.infoLabel.text = @"There is no new groups";
+                self.infoLabel.text = @"There are no new groups";
                 self.bacgroundImageView.alpha = 0.0;
             }
 
@@ -132,7 +132,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     }
     
     if (!self.frontCardView.subviews && !self.backCardView.superview && self.groups.count <= 0) {
-        self.infoLabel.text = @"There is no new groups";
+        self.infoLabel.text = @"There are no new groups";
         self.bacgroundImageView.alpha = 0.0;
     }
 }
