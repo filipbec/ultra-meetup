@@ -11,6 +11,7 @@
 #import "ChatRoom.h"
 #import "App.h"
 #import "MatchViewController.h"
+#import "GroupDetailsViewController.h"
 
 #import <MDCSwipeToChoose/MDCSwipeToChoose.h>
 #import <SVProgressHUD.h>
@@ -77,6 +78,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
             }
 
             self.frontCardView = [self popPersonViewWithFrame:[self frontCardViewFrame]];
+            UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openGroupDetailsScreen)];
+            [self.frontCardView addGestureRecognizer:tapGestureRecognizer];
             [self.view addSubview:self.frontCardView];
             
             self.backCardView = [self popPersonViewWithFrame:[self backCardViewFrame]];
@@ -186,7 +189,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     return personView;
 }
 
-#pragma mark View Contruction
+#pragma mark View Construction
 
 - (CGRect)frontCardViewFrame {
     CGFloat horizontalPadding = 20.f;
@@ -279,11 +282,23 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [self performSegueWithIdentifier:@"match" sender:self];
 }
 
+#pragma mark - Details
+
+- (void)openGroupDetailsScreen
+{
+    [self performSegueWithIdentifier:@"GroupDetails" sender:self];
+}
+
+#pragma mark - Navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"match"]) {
         MatchViewController *vc = (MatchViewController *)[segue.destinationViewController topViewController];
         vc.group = self.matchGroup;
+    } else if ([segue.identifier isEqualToString:@"GroupDetails"]) {
+        GroupDetailsViewController *groupDetailsViewController = segue.destinationViewController;
+        groupDetailsViewController.group = self.currentGroup;
     }
 }
 
