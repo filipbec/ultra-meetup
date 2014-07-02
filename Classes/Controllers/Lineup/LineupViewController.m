@@ -132,7 +132,7 @@ typedef NS_ENUM(NSInteger, Day) {
     self.activeButtonIndicatorView.backgroundColor = PURPLE_COLOR;
     
     // Table view
-    CGFloat dummyViewHeight = 60.0;
+    CGFloat dummyViewHeight = 100.0;
     UIView *dummyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, dummyViewHeight)];
     self.tableView.tableHeaderView = dummyView;
     self.tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0);
@@ -197,12 +197,14 @@ typedef NS_ENUM(NSInteger, Day) {
             break;
     }
     
+    lineupTableSectionView.titleLabel.font = [UIFont fontWithName:@"DOCK11-Heavy" size:17.0];
+    
     return lineupTableSectionView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 60.0;
+    return 100.0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -257,7 +259,10 @@ typedef NS_ENUM(NSInteger, Day) {
     }
     
     cell.timeLabel.text = eventDictionary[@"Time"];
-    cell.artistLabel.text = eventDictionary[@"Artist"];
+    cell.timeLabel.font = [UIFont fontWithName:@"DOCK11-Heavy" size:17.0];
+    
+    cell.artistLabel.text = [eventDictionary[@"Artist"] uppercaseString];
+    cell.artistLabel.font = [UIFont fontWithName:@"DOCK11-Heavy" size:17.0];;
     
     return cell;
 }
