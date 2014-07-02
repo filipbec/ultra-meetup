@@ -350,6 +350,7 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="R95-dS-65N" id="ESU-ZG-LWW"/>
+                        <outlet property="titleLabel" destination="6He-dX-fon" id="DSA-wZ-2Vo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1bl-XB-Kqk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -965,6 +966,13 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSU-Im-LZo">
+                                                    <rect key="frame" x="234" y="10" width="66" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="4md-U1-W7w" secondAttribute="trailing" constant="20" id="Bkh-MH-JTl"/>
@@ -984,6 +992,7 @@
                     <navigationItem key="navigationItem" id="hTb-Ev-RhY"/>
                     <connections>
                         <outlet property="groupDescriptionLabel" destination="4md-U1-W7w" id="xhj-jT-YHC"/>
+                        <outlet property="groupGenderLabel" destination="TSU-Im-LZo" id="cwq-Z9-9Gl"/>
                         <outlet property="groupNameLabel" destination="u0d-wh-Abz" id="igh-OA-jjV"/>
                         <outlet property="headerScrollView" destination="Bh9-6n-15t" id="DME-qZ-TSq"/>
                     </connections>

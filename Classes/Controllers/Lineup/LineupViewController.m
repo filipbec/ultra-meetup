@@ -275,10 +275,10 @@ typedef NS_ENUM(NSInteger, Day) {
     }
     
     cell.timeLabel.text = eventDictionary[@"Time"];
-    cell.timeLabel.font = [UIFont fontWithName:@"DOCK11-Heavy" size:17.0];
+//    cell.timeLabel.font = [UIFont fontWithName:@"DOCK11-Heavy" size:17.0];
     
     cell.artistLabel.text = [eventDictionary[@"Artist"] uppercaseString];
-    cell.artistLabel.font = [UIFont fontWithName:@"DOCK11-Heavy" size:17.0];;
+//    cell.artistLabel.font = [UIFont fontWithName:@"DOCK11-Heavy" size:17.0];;
     
     return cell;
 }

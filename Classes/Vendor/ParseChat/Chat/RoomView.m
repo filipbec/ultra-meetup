@@ -37,8 +37,11 @@
     
 	self.title = @"MATCHES";
 	self.tableView.separatorInset = UIEdgeInsetsZero;
-    
-	[self refreshTable];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self refreshTable];
 }
 
 - (void)refreshTable

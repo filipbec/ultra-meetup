@@ -17,13 +17,6 @@
 #import "Group.h"
 #import <SVProgressHUD.h>
 
-typedef NS_ENUM(NSInteger, Gender) {
-    GenderNone = -1,
-    GenderMale = 0,
-    GenderFemale = 1,
-    GenderMixed = 2
-};
-
 @interface ProfileTableViewController ()
 
 @property (nonatomic, retain) NSMutableOrderedSet *friends;

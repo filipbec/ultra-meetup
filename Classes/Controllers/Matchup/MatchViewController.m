@@ -40,6 +40,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.titleLabel.font = [UIFont fontWithName:@"DOCK11-Heavy" size:28.0];
+    
     self.imageView1.layer.masksToBounds = YES;
     self.imageView2.layer.masksToBounds = YES;
     

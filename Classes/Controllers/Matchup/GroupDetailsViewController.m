@@ -8,6 +8,7 @@
 
 #import "GroupDetailsViewController.h"
 #import "Group.h"
+#import "AppDefines.h"
 
 #import <UIImageView+AFNetworking.h>
 
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *headerScrollView;
 @property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *groupDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *groupGenderLabel;
 
 @property (nonatomic, strong) UIPageControl *pageControl;
 
@@ -121,6 +123,34 @@
 {
     self.groupNameLabel.text = self.group.fullName;
     self.groupNameLabel.textColor = PURPLE_COLOR;
+    
+    self.groupGenderLabel.textColor = PURPLE_COLOR;
+    
+    NSString *gender = nil;
+    
+    switch (self.group.gender) {
+        case GenderMale:
+            gender = @"Male";
+            break;
+            
+        case GenderFemale:
+            gender = @"Female";
+            break;
+            
+        case GenderMixed:
+            gender = @"Mixed";
+            break;
+            
+        case GenderNone:
+            gender = @"Not set";
+            break;
+            
+            
+        default:
+            break;
+    }
+    
+    self.groupGenderLabel.text = gender;
     
     self.groupDescriptionLabel.text = self.group.groupDescription;
 }

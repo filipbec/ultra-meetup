@@ -12,6 +12,7 @@
 
 @interface LoginViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
@@ -31,6 +32,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.titleLabel.font = [UIFont fontWithName:@"DOCK11-Heavy" size:48.0];
 }
 
 - (void)didReceiveMemoryWarning

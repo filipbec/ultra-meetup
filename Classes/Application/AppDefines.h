@@ -33,3 +33,14 @@
 
 #define		PF_CHATROOMS_CLASS_NAME			@"ChatRooms"
 #define		PF_CHATROOMS_ROOM				@"room"
+
+
+
+
+
+typedef NS_ENUM(NSInteger, Gender) {
+    GenderNone = -1,
+    GenderMale = 0,
+    GenderFemale = 1,
+    GenderMixed = 2
+};
