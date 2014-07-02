@@ -65,6 +65,22 @@ typedef NS_ENUM(NSInteger, Day) {
     [[PFInstallation currentInstallation] saveEventually];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    // HOTFIX
+    
+    for (UIButton *button in self.topBarButtons) {
+        if (button.selected) {
+            CGRect newActiveButtonIndicatorViewFrame = self.activeButtonIndicatorView.frame;
+            newActiveButtonIndicatorViewFrame.origin.x = button.frame.origin.x;
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                self.activeButtonIndicatorView.frame = newActiveButtonIndicatorViewFrame;
+            });
+            return;
+        }
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

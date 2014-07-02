@@ -40,6 +40,8 @@
 {
     [super viewDidLoad];
     
+    [self configureTableView];
+    
     [SVProgressHUD show];
     [self.group refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         self.group = (Group *)object;
@@ -60,9 +62,8 @@
 
 - (void)configureAppearance
 {
-    [self configureNavigationBarButtonItems];
+//    [self configureNavigationBarButtonItems];
     [self configureScrollViewAndPageControl];
-    [self configureTableView];
     [self configureTableViewInformation];
 }
 
@@ -131,7 +132,7 @@
     if (indexPath.row == 1)
     {
         [self.groupDescriptionLabel sizeToFit];
-        return self.groupDescriptionLabel.bounds.size.height + 22;
+        return self.groupDescriptionLabel.bounds.size.height + 50;
     }
     else
     {
