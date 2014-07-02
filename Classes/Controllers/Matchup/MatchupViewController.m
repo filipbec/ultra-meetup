@@ -59,7 +59,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
     if (![App instance].myGroup) {
         self.bacgroundImageView.alpha = 0.0;
-        self.infoLabel.text = @"In order to browse other people create your own group.";
+        self.infoLabel.text = @"In order to browse other groups, you must first create your own group.\n\nPlease go to Profile tab to set it up.";
         
     } else {
         [SVProgressHUD show];

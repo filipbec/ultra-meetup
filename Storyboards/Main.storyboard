@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Matchup View Controller - Matchup-->
+        <!--Matchup View Controller - MATCHUP-->
         <scene sceneID="MMU-tU-soV">
             <objects>
                 <viewController id="lL2-vA-UgD" customClass="MatchupViewController" sceneMemberID="viewController">
@@ -41,7 +41,7 @@
                             <constraint firstItem="Wal-b3-pfU" firstAttribute="leading" secondItem="0ok-Lw-NBm" secondAttribute="leading" id="z3h-xZ-E1Y"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Matchup" id="OXu-bc-8y4"/>
+                    <navigationItem key="navigationItem" title="MATCHUP" id="OXu-bc-8y4"/>
                     <connections>
                         <outlet property="bacgroundImageView" destination="Wal-b3-pfU" id="6Df-ZC-CrR"/>
                         <outlet property="infoLabel" destination="KeP-XW-wb0" id="lQT-dq-fan"/>
@@ -696,7 +696,7 @@
             </objects>
             <point key="canvasLocation" x="653" y="2518"/>
         </scene>
-        <!--Room View-->
+        <!--Room View - CHAT-->
         <scene sceneID="LXW-b2-yZr">
             <objects>
                 <tableViewController id="MmT-ik-wrc" customClass="RoomView" sceneMemberID="viewController">
@@ -750,7 +750,7 @@
                             <outlet property="delegate" destination="MmT-ik-wrc" id="c7r-wj-uoQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Vui-Sq-86P"/>
+                    <navigationItem key="navigationItem" title="CHAT" id="Vui-Sq-86P"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cBC-H8-p5a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

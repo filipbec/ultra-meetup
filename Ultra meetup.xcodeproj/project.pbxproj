@@ -17,6 +17,8 @@
 		5F106D1C195AF69300160B4D /* ProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F106D0D195AF69300160B4D /* ProfileView.m */; };
 		5F106D1D195AF69300160B4D /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F106D0E195AF69300160B4D /* ProfileView.xib */; };
 		5F106D22195AF69300160B4D /* utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F106D17195AF69300160B4D /* utilities.m */; };
+		5F4DCA6D1963E0DC00E753CF /* heavy_dock11.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5F4DCA6C1963E0DC00E753CF /* heavy_dock11.otf */; };
+		5F4DCA6E1963E0DC00E753CF /* heavy_dock11.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5F4DCA6C1963E0DC00E753CF /* heavy_dock11.otf */; };
 		5F5CAD0D1963227F002E59E5 /* GroupDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5CAD0C1963227F002E59E5 /* GroupDetailsViewController.m */; };
 		5FDD2E9E195C9EA200297E2D /* LineupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDD2E9D195C9EA200297E2D /* LineupCell.m */; };
 		5FDD2EA1195CA45F00297E2D /* LineupTableSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDD2EA0195CA45F00297E2D /* LineupTableSectionView.m */; };
@@ -87,6 +89,7 @@
 		5F106D0E195AF69300160B4D /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		5F106D16195AF69300160B4D /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
 		5F106D17195AF69300160B4D /* utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = utilities.m; sourceTree = "<group>"; };
+		5F4DCA6C1963E0DC00E753CF /* heavy_dock11.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = heavy_dock11.otf; sourceTree = "<group>"; };
 		5F5CAD0B1963227F002E59E5 /* GroupDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailsViewController.h; sourceTree = "<group>"; };
 		5F5CAD0C1963227F002E59E5 /* GroupDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailsViewController.m; sourceTree = "<group>"; };
 		5FDD2E9C195C9EA200297E2D /* LineupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineupCell.h; sourceTree = "<group>"; };
@@ -256,6 +259,7 @@
 		5FDD2EA8195CB1BD00297E2D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5F4DCA6C1963E0DC00E753CF /* heavy_dock11.otf */,
 				5FDD2EA9195CB1BD00297E2D /* Images.xcassets */,
 				5FDD2EAE195CB1BD00297E2D /* TabBar.xcassets */,
 				5FDD2EAA195CB1BD00297E2D /* Plists */,
@@ -571,6 +575,7 @@
 				5FDD2EB1195CB1BD00297E2D /* Day2.plist in Resources */,
 				5FDD2EB0195CB1BD00297E2D /* Day1.plist in Resources */,
 				5FDD2EB3195CB1BD00297E2D /* TabBar.xcassets in Resources */,
+				5F4DCA6D1963E0DC00E753CF /* heavy_dock11.otf in Resources */,
 				5FDD2EB2195CB1BD00297E2D /* Day3.plist in Resources */,
 				CF49085B195445A50099C6E6 /* InfoPlist.strings in Resources */,
 				5F106D1D195AF69300160B4D /* ProfileView.xib in Resources */,
@@ -581,6 +586,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F4DCA6E1963E0DC00E753CF /* heavy_dock11.otf in Resources */,
 				CF49087D195445A50099C6E6 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

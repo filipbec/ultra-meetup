@@ -35,7 +35,7 @@
 {
 	[super viewDidLoad];
     
-	self.title = @"Matches";
+	self.title = @"MATCHES";
 	self.tableView.separatorInset = UIEdgeInsetsZero;
     
 	[self refreshTable];

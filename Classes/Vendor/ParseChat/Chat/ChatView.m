@@ -49,7 +49,6 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	self.title = @"Chat";
     
     if ([[App instance].myGroup.objectId isEqualToString:chatroom.group1.objectId]) {
         self.otherGroup = chatroom.group2;
